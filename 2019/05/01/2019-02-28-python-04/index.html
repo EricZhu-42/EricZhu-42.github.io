@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Basic Notes on NumPy">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Basic Notes on NumPy">
+<meta property="og:url" content="http://yoursite.com/2019/05/01/2019-02-28-python-04/index.html">
+<meta property="og:site_name" content="EricZhu-42&#39;s Blog">
+<meta property="og:description" content="Basic Notes on NumPy">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-01T12:26:48.246Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Basic Notes on NumPy">
+<meta name="twitter:description" content="Basic Notes on NumPy">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/05/01/2019-02-28-python-04/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Basic Notes on NumPy | EricZhu-42's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">EricZhu-42's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/2019-02-28-python-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="EricZhu-42">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EricZhu-42's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Basic Notes on NumPy
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-01 00:20:25" itemprop="dateCreated datePublished" datetime="2019-05-01T00:20:25+08:00">2019-05-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-01 20:26:48" itemprop="dateModified" datetime="2019-03-01T20:26:48+08:00">2019-03-01</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">Basic Notes on NumPy</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="About-NumPy"><a href="#About-NumPy" class="headerlink" title="About NumPy"></a>About NumPy</h2><p>​    NumPy is the fundamental package for scientific computing with Python. It contains among other things:</p>
+<ul>
+<li>a powerful N-dimensional array object</li>
+<li>sophisticated (broadcasting) functions</li>
+<li>tools for integrating C/C++ and Fortran code</li>
+<li>useful linear algebra, Fourier transform, and random number capabilities</li>
+</ul>
+<h2 id="The-Basics"><a href="#The-Basics" class="headerlink" title="The Basics"></a>The Basics</h2><p>​    NumPy’s array class is called <code>ndarray</code>. It is also known by the alias <code>array</code>. In NumPy dimensions are called <em>axes</em>.</p>
+<a id="more"></a>
+<p>​    Note that <code>numpy.array</code> is not the same as the Standard Python Library class <code>array.array</code>, which only handles one-dimensional arrays and offers less functionality.</p>
+<p>​    Here are some attributes of an <code>ndarray</code> object:</p>
+<ul>
+<li><p><strong>ndarray.ndim</strong></p>
+<p>The <strong>number of axes</strong> (dimensions) of the array.</p>
+</li>
+<li><p><strong>ndarray.shape</strong></p>
+<p>The <strong>dimensions</strong> of the array. </p>
+<p>This is a tuple of integers indicating the size of the array in each dimension. For a matrix with <em>n</em> rows and <em>m</em> columns, <code>shape</code> will be <code>(n,m)</code>. The length of the <code>shape</code> tuple is therefore the number of axes, <code>ndim</code>.</p>
+</li>
+<li><p><strong>ndarray.size</strong></p>
+<p>The <strong>total number of elements</strong> of the array. This is equal to the product of the elements of <code>shape</code>.</p>
+</li>
+<li><p><strong>ndarray.itemsize</strong></p>
+<p>The <strong>size in bytes of each element</strong> of the array. </p>
+<p>For example, an array of elements of type <code>float64</code> has <code>itemsize</code> 8 (=64/8), while one of type <code>complex32</code> has <code>itemsize</code> 4 (=32/8). It is equivalent to <code>ndarray.dtype.itemsize</code>.</p>
+</li>
+<li><p><strong>ndarray.dtype</strong></p>
+<p>An object describing the <strong>type of the elements</strong> in the array. </p>
+</li>
+</ul>
+<p>An Example:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.arange(<span class="number">15</span>).reshape(<span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">array([[ <span class="number">0</span>,  <span class="number">1</span>,  <span class="number">2</span>,  <span class="number">3</span>,  <span class="number">4</span>],</span><br><span class="line">       [ <span class="number">5</span>,  <span class="number">6</span>,  <span class="number">7</span>,  <span class="number">8</span>,  <span class="number">9</span>],</span><br><span class="line">       [<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">14</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.shape</span><br><span class="line">(<span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.ndim</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.dtype.name</span><br><span class="line"><span class="string">'int64'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.itemsize</span><br><span class="line"><span class="number">8</span>	<span class="comment"># per item</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.size</span><br><span class="line"><span class="number">15</span>	<span class="comment"># number of items</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(a)</span><br><span class="line">&lt;type <span class="string">'numpy.ndarray'</span>&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Array-Creation"><a href="#Array-Creation" class="headerlink" title="Array Creation"></a>Array Creation</h2><p>​    You can create an array from a regular Python list or tuple using the <code>array</code> function. The type of the resulting array is deduced from the type of the elements in the sequences.</p>
+<p>A frequent error consists in calling <code>array</code> with multiple numeric arguments, rather than providing a single list of numbers as an argument.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.array(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)    <span class="comment"># WRONG</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])  <span class="comment"># RIGHT</span></span><br></pre></td></tr></table></figure>
+<p>The type of the array can also be explicitly specified at creation time:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = np.array( [ [<span class="number">1</span>,<span class="number">2</span>], [<span class="number">3</span>,<span class="number">4</span>] ], dtype=complex )</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c</span><br><span class="line">array([[ <span class="number">1.</span>+<span class="number">0.j</span>,  <span class="number">2.</span>+<span class="number">0.j</span>],</span><br><span class="line">       [ <span class="number">3.</span>+<span class="number">0.j</span>,  <span class="number">4.</span>+<span class="number">0.j</span>]])</span><br></pre></td></tr></table></figure>
+<p>The function <code>zeros</code> creates an array full of zeros, the function <code>ones</code> creates an array full of ones, and the function <code>empty</code> creates an array whose initial content is random and depends on the state of the memory. By default, the dtype of the created array is <code>float64</code>.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.zeros( (<span class="number">3</span>,<span class="number">4</span>) )</span><br><span class="line">array([[ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>],</span><br><span class="line">       [ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>],</span><br><span class="line">       [ <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>,  <span class="number">0.</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.ones( (<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>), dtype=np.int16 )                </span><br><span class="line">array([[[ <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">        [ <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">        [ <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]],</span><br><span class="line">       [[ <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">        [ <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">        [ <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]]], dtype=int16)</span><br></pre></td></tr></table></figure>
+<p>To create sequences of numbers, NumPy provides a function analogous to <code>range</code> that returns arrays instead of lists.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.arange( <span class="number">10</span>, <span class="number">30</span>, <span class="number">5</span> )</span><br><span class="line">array([<span class="number">10</span>, <span class="number">15</span>, <span class="number">20</span>, <span class="number">25</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.arange( <span class="number">0</span>, <span class="number">2</span>, <span class="number">0.3</span> )	<span class="comment"># it accepts float arguments</span></span><br><span class="line">array([ <span class="number">0.</span> ,  <span class="number">0.3</span>,  <span class="number">0.6</span>,  <span class="number">0.9</span>,  <span class="number">1.2</span>,  <span class="number">1.5</span>,  <span class="number">1.8</span>])</span><br></pre></td></tr></table></figure>
+<p>For float data, use the function <code>linspace</code> that receives as an argument the number of elements that we want, instead of the step.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> numpy <span class="keyword">import</span> pi</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.linspace( <span class="number">0</span>, <span class="number">2</span>, <span class="number">9</span> )	<span class="comment"># 9 numbers from 0 to 2</span></span><br><span class="line">array([ <span class="number">0.</span>  ,  <span class="number">0.25</span>,  <span class="number">0.5</span> ,  <span class="number">0.75</span>,  <span class="number">1.</span>  ,  <span class="number">1.25</span>,  <span class="number">1.5</span> ,  <span class="number">1.75</span>,  <span class="number">2.</span>  ])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = np.linspace( <span class="number">0</span>, <span class="number">2</span>*pi, <span class="number">100</span> )	<span class="comment"># useful to evaluate function at lots of points</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>f = np.sin(x)</span><br></pre></td></tr></table></figure>
+<h2 id="Basic-Operations"><a href="#Basic-Operations" class="headerlink" title="Basic Operations"></a>Basic Operations</h2><p>Unlike in many matrix languages, the product operator <code>*</code> operates elementwise in NumPy arrays. The matrix product can be performed using the <code>dot</code> function or method.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>A = np.array( [[<span class="number">1</span>,<span class="number">1</span>],</span><br><span class="line"><span class="meta">... </span>            [<span class="number">0</span>,<span class="number">1</span>]] )</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>B = np.array( [[<span class="number">2</span>,<span class="number">0</span>],</span><br><span class="line"><span class="meta">... </span>            [<span class="number">3</span>,<span class="number">4</span>]] )</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A * B                       <span class="comment"># elementwise product</span></span><br><span class="line">array([[<span class="number">2</span>, <span class="number">0</span>],</span><br><span class="line">       [<span class="number">0</span>, <span class="number">4</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>A.dot(B)                    <span class="comment"># another matrix product</span></span><br><span class="line">array([[<span class="number">5</span>, <span class="number">4</span>],</span><br><span class="line">       [<span class="number">3</span>, <span class="number">4</span>]])</span><br></pre></td></tr></table></figure>
+<p>Some operations, such as <code>+=</code> and <code>*=</code>, act in place to modify an existing array rather than create a new one.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = np.ones((<span class="number">2</span>,<span class="number">3</span>), dtype=int)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = np.random.random((<span class="number">2</span>,<span class="number">3</span>))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a *= <span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">array([[<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>],</span><br><span class="line">       [<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b += a</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b</span><br><span class="line">array([[ <span class="number">3.417022</span>  ,  <span class="number">3.72032449</span>,  <span class="number">3.00011437</span>],</span><br><span class="line">       [ <span class="number">3.30233257</span>,  <span class="number">3.14675589</span>,  <span class="number">3.09233859</span>]])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a += b                  <span class="comment"># b is not automatically converted to integer type</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  ...</span><br><span class="line">TypeError: Cannot cast ufunc add output <span class="keyword">from</span> dtype(<span class="string">'float64'</span>) to dtype(<span class="string">'int64'</span>) <span class="keyword">with</span> casting rule <span class="string">'same_kind'</span></span><br></pre></td></tr></table></figure>
+<p>When operating with arrays of different types, the type of the resulting array corresponds to the more general or precise one (a behavior known as upcasting).</p>
+<p>Many unary operations, such as computing the sum of all the elements in the array, are implemented as methods of the <code>ndarray</code>class.</p>
+<ul>
+<li>a.sum()</li>
+<li>a.min()</li>
+<li>a.max()</li>
+</ul>
+<p>By default, these operations apply to the array as though it were a list of numbers, regardless of its shape. However, by specifying the <code>axis</code> parameter you can apply an operation along the specified axis of an array:</p>
+<ul>
+<li>a.max(axis=0)</li>
+<li>a.cumsum(axis=1)</li>
+</ul>
+<p>Within NumPy, “universal functions” like sin, cos, and exp operate elementwise on an array, producing an array as output.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>B = np.arange(<span class="number">3</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>B</span><br><span class="line">array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.exp(B)</span><br><span class="line">array([ <span class="number">1.</span>        ,  <span class="number">2.71828183</span>,  <span class="number">7.3890561</span> ])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>np.sqrt(B)</span><br><span class="line">array([ <span class="number">0.</span>        ,  <span class="number">1.</span>        ,  <span class="number">1.41421356</span>])</span><br></pre></td></tr></table></figure>
+<h2 id="Indexing-Slicing-and-Iterating"><a href="#Indexing-Slicing-and-Iterating" class="headerlink" title="Indexing, Slicing and Iterating"></a>Indexing, Slicing and Iterating</h2><p><strong>One-dimensional</strong> arrays can be indexed, sliced and iterated over, much like Lists and other Python sequences.</p>
+<p><strong>Multidimensional</strong> arrays can have one index per axis. These indices are given in a tuple separated by commas:<br>When fewer indices are provided than the number of axes, the missing indices are considered complete slices<code>:</code><br>The <strong>dots</strong> (<code>...</code>) represent as many colons as needed to produce a complete indexing tuple. For example, if <code>x</code> is an array with 5 axes, then  </p>
+<ul>
+<li><code>x[1,2,...]</code> == <code>x[1,2,:,:,:]</code>,</li>
+<li><code>x[...,3]</code> == <code>x[:,:,:,:,3]</code> </li>
+<li><code>x[4,...,5,:]</code> == <code>x[4,:,:,5,:]</code>.  </li>
+</ul>
+<p><strong>Iterating</strong> over multidimensional arrays is done with respect to the first axis.</p>
+<h2 id="Shape-Manipulation"><a href="#Shape-Manipulation" class="headerlink" title="Shape Manipulation"></a>Shape Manipulation</h2><ol>
+<li><p>Changing the shape of an array</p>
+<ul>
+<li>a.ravel()<br>returns the array, flattened</li>
+<li>a.reshape(m,n)<br>returns the array with a modified shape<br>If a dimension is given as -1 in a reshaping operation, the other dimensions are automatically calculated.</li>
+<li>a.T<br>returns the array, transposed  </li>
+</ul>
+</li>
+<li><p>Stacking together different arrays</p>
+<ul>
+<li>np.vstack((a,b)) # Vertical</li>
+<li>np.hstack((a,b)) # Horizontal</li>
+<li>np.concatenate(a1,a2,…,axis=n) # Complex cases</li>
+</ul>
+</li>
+<li><p>Splitting one array into several smaller ones  </p>
+<ul>
+<li>np.vsplit() # Vertical</li>
+<li>np.hsplit() # Horizontal</li>
+<li>np.array_split() # Complex cases</li>
+</ul>
+</li>
+</ol>
+<h2 id="Copies-and-Views"><a href="#Copies-and-Views" class="headerlink" title="Copies and Views"></a>Copies and Views</h2><ol>
+<li><h3 id="No-Copy-at-All"><a href="#No-Copy-at-All" class="headerlink" title="No Copy at All"></a>No Copy at All</h3><p>Simple assignments make no copy of array objects or of their data.</p>
+<p>Python passes mutable objects as references, so function calls make no copy.</p>
+</li>
+<li><h3 id="View-or-Shallow-Copy"><a href="#View-or-Shallow-Copy" class="headerlink" title="View or Shallow Copy"></a>View or Shallow Copy</h3><p>Different array objects can share the same data. The <code>view</code> method creates a new array object that looks at the same data.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = a.view()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c <span class="keyword">is</span> a</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c.base <span class="keyword">is</span> a	<span class="comment"># c is a view of the data owned by a</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c.flags.owndata</span><br><span class="line"><span class="literal">False</span></span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c.shape = <span class="number">2</span>,<span class="number">6</span>	<span class="comment"># a's shape doesn't change</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a.shape</span><br><span class="line">(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c[<span class="number">0</span>,<span class="number">4</span>] = <span class="number">1234</span>	<span class="comment"># a's data changes</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a</span><br><span class="line">array([[   <span class="number">0</span>,    <span class="number">1</span>,    <span class="number">2</span>,    <span class="number">3</span>],</span><br><span class="line">       [<span class="number">1234</span>,    <span class="number">5</span>,    <span class="number">6</span>,    <span class="number">7</span>],</span><br><span class="line">       [   <span class="number">8</span>,    <span class="number">9</span>,   <span class="number">10</span>,   <span class="number">11</span>]])</span><br></pre></td></tr></table></figure>
+<p>Slicing an array returns a view of it.</p>
+</li>
+<li><h3 id="Deep-Copy"><a href="#Deep-Copy" class="headerlink" title="Deep Copy"></a>Deep Copy</h3><p>The <code>copy</code> method makes a complete copy of the array and its data.</p>
+</li>
+</ol>
+<blockquote>
+<p>For less basic usage of NumPy, refer to the following documentation directly.</p>
+</blockquote>
+<h2 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h2><ol>
+<li><a href="https://docs.scipy.org/doc/numpy/user/quickstart.html" target="_blank" rel="noopener">NumPy Tutorial</a></li>
+<li><a href="https://www.numpy.org.cn/" target="_blank" rel="noopener">NumPy Documentation (Chinese Version)</a></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/01/2019-02-26-python-03/" rel="next" title="Notes on " style guide for python code"">
+                <i class="fa fa-chevron-left"></i> Notes on "Style Guide for Python Code"
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/01/2019-03-05-python-05/" rel="prev" title="Basic Notes on pandas">
+                Basic Notes on pandas <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">EricZhu-42</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#About-NumPy"><span class="nav-number">1.</span> <span class="nav-text">About NumPy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Basics"><span class="nav-number">2.</span> <span class="nav-text">The Basics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-Creation"><span class="nav-number">3.</span> <span class="nav-text">Array Creation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-Operations"><span class="nav-number">4.</span> <span class="nav-text">Basic Operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Indexing-Slicing-and-Iterating"><span class="nav-number">5.</span> <span class="nav-text">Indexing, Slicing and Iterating</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shape-Manipulation"><span class="nav-number">6.</span> <span class="nav-text">Shape Manipulation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Copies-and-Views"><span class="nav-number">7.</span> <span class="nav-text">Copies and Views</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#No-Copy-at-All"><span class="nav-number">7.1.</span> <span class="nav-text">No Copy at All</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#View-or-Shallow-Copy"><span class="nav-number">7.2.</span> <span class="nav-text">View or Shallow Copy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deep-Copy"><span class="nav-number">7.3.</span> <span class="nav-text">Deep Copy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">8.</span> <span class="nav-text">References:</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EricZhu-42</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

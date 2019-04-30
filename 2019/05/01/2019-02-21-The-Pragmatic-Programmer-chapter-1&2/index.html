@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Notes-The Pragmatic Programmer, Chapter 1&amp;2">
+<meta name="keywords" content="Reading Notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Pragmatic Programmer, Chapter 1&amp;2">
+<meta property="og:url" content="http://yoursite.com/2019/05/01/2019-02-21-The-Pragmatic-Programmer-chapter-1&2/index.html">
+<meta property="og:site_name" content="EricZhu-42&#39;s Blog">
+<meta property="og:description" content="Notes-The Pragmatic Programmer, Chapter 1&amp;2">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-21T15:28:03.511Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Pragmatic Programmer, Chapter 1&amp;2">
+<meta name="twitter:description" content="Notes-The Pragmatic Programmer, Chapter 1&amp;2">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/05/01/2019-02-21-The-Pragmatic-Programmer-chapter-1&2/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>The Pragmatic Programmer, Chapter 1&2 | EricZhu-42's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">EricZhu-42's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/2019-02-21-The-Pragmatic-Programmer-chapter-1&2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="EricZhu-42">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EricZhu-42's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">The Pragmatic Programmer, Chapter 1&2
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-01 00:20:25" itemprop="dateCreated datePublished" datetime="2019-05-01T00:20:25+08:00">2019-05-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-21 23:28:03" itemprop="dateModified" datetime="2019-02-21T23:28:03+08:00">2019-02-21</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">Notes-The Pragmatic Programmer, Chapter 1&2</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="The-Pragmatic-Programmer"><a href="#The-Pragmatic-Programmer" class="headerlink" title="The Pragmatic Programmer"></a>The Pragmatic Programmer</h1><h2 id="1-A-Pragmatic-Philosophy"><a href="#1-A-Pragmatic-Philosophy" class="headerlink" title="1. A Pragmatic Philosophy"></a>1. A Pragmatic Philosophy</h2><h3 id="The-Cat-Ate-My-Source-Code"><a href="#The-Cat-Ate-My-Source-Code" class="headerlink" title="The Cat Ate My Source Code"></a>The Cat Ate My Source Code</h3><ul>
+<li>Take responsibilities for yourself and your actions, being honest and direct</li>
+<li>Provide options instead of lame excuses</li>
+<li>Be ready for others’ errors</li>
+<li>Admit that you need help when necessary</li>
+</ul>
+<h3 id="Software-Entropy"><a href="#Software-Entropy" class="headerlink" title="Software Entropy"></a>Software Entropy</h3><ul>
+<li><strong>Don’t live with broken windows, fix them as soon as they are discovered</strong></li>
+<li>If time is insufficient, leave a comment at least</li>
+<li>Neglect accelerates the rot faster than any other factor</li>
+</ul>
+<a id="more"></a> 
+<h3 id="Stone-Soup-and-Boiled-Frogs"><a href="#Stone-Soup-and-Boiled-Frogs" class="headerlink" title="Stone Soup and Boiled Frogs"></a>Stone Soup and Boiled Frogs</h3><ul>
+<li><strong>Be a catalyst for change. Show them a glimpse of the future and you’ll get them to rally around</strong></li>
+<li>Remember the big picture. Constantly review what’s happening around you.</li>
+</ul>
+<h3 id="Good-Enough-Software"><a href="#Good-Enough-Software" class="headerlink" title="Good-Enough Software"></a>Good-Enough Software</h3><ul>
+<li>Write software that’s good enough for users, future maintainers, your own peace of mind. </li>
+<li><strong>The scope and quality of the system should be part of the early requirement</strong></li>
+<li>Great software today is often preferable to perfect software tomorrow. They can NEVER be perfect.</li>
+</ul>
+<h3 id="Your-Knowledge-Portfolio"><a href="#Your-Knowledge-Portfolio" class="headerlink" title="Your Knowledge Portfolio"></a>Your Knowledge Portfolio</h3><ul>
+<li><strong>Invest in your knowledge portfolio regularly. Learn at least one new language every year</strong></li>
+<li>Diversity matters. Learn technical and non-technical knowledge.</li>
+<li>Balance between high-risk technologies and low-risk ones</li>
+<li>Be ready to learn emerging technology before it gets popular.  </li>
+<li>Stay current and get wired</li>
+</ul>
+<h3 id="Communicate"><a href="#Communicate" class="headerlink" title="Communicate!"></a>Communicate!</h3><ul>
+<li>Know what you want to say</li>
+<li><strong>It’s both WHAY YOU SAY and THE WAY YOU SAY IT</strong></li>
+<li>Know the audience</li>
+</ul>
+<h2 id="2-A-Pragmatic-Approach"><a href="#2-A-Pragmatic-Approach" class="headerlink" title="2. A Pragmatic Approach"></a>2. A Pragmatic Approach</h2><h3 id="The-Evils-of-Duplication"><a href="#The-Evils-of-Duplication" class="headerlink" title="The  Evils of Duplication"></a>The  Evils of Duplication</h3><ul>
+<li>DRY principle: Don’t Repeat Yourself</li>
+<li>If duplication is unavoidable, make the process active by using automatic methods</li>
+<li>Make comments independent from detailed code</li>
+<li>Use header files to document interface issues</li>
+<li><strong>Normalize data by using accessor functions to read/write and localizing impacts</strong></li>
+<li>Shortcuts make for longer delays. Avoid impatient Duplication</li>
+<li>Encourage active and frequent communications between developers. Appoint a member as the project librarian if possible</li>
+</ul>
+<h3 id="Orthogonality"><a href="#Orthogonality" class="headerlink" title="Orthogonality"></a>Orthogonality</h3><ul>
+<li>Orthogonality signifies independence and decoupling.</li>
+<li><strong>Eliminate effects between unrelated things</strong></li>
+<li>Orthogonality increases productivity and reduces risk</li>
+<li>An orthogonal team is more efficient</li>
+</ul>
+<h3 id="Reversibility"><a href="#Reversibility" class="headerlink" title="Reversibility"></a>Reversibility</h3><ul>
+<li>There are no final decisions. ALL decisions are temporary in real circumstances</li>
+<li>Make architecture flexible to get ready for a change in platform, language, design pattern, etc</li>
+</ul>
+<h3 id="Tracer-Bullets"><a href="#Tracer-Bullets" class="headerlink" title="Tracer Bullets"></a>Tracer Bullets</h3><ul>
+<li>Use tracer bullets like printing variables to test components of the system</li>
+<li><strong>Tracer code is not disposable because a project is never fininshed</strong></li>
+<li>Prototype generates disposable code while tracer code is lean but complete. They are different development styles</li>
+</ul>
+<h3 id="Prototypes-and-Post-it-Notes"><a href="#Prototypes-and-Post-it-Notes" class="headerlink" title="Prototypes and Post-it Notes"></a>Prototypes and Post-it Notes</h3><ul>
+<li>Prototypes are designed to test some specific aspects of a project</li>
+<li>Prototypes can be built on different materials, like workflow or application logic for dynamic things and whiteboard for user interface</li>
+<li>Prototypes are designed to answer just a few questions. They are much cheaper and faster to develop</li>
+<li><strong>The value of prototype lies both in the code produced and the lesson learned</strong></li>
+<li>Things can be ignored when building a prototype<ul>
+<li>Correctness of data</li>
+<li>Completeness of function</li>
+<li>Robustness (Error checking)</li>
+<li>Pretty and standard style</li>
+</ul>
+</li>
+<li>When prototype is inclined to be based on, turn to tracer bullet approach instead</li>
+</ul>
+<h3 id="Domain-Languages"><a href="#Domain-Languages" class="headerlink" title="Domain Languages"></a>Domain Languages</h3><ul>
+<li><strong>Program close to the problem domain</strong></li>
+<li>Use mini-language to help create artifacts (related to metaprogramming)</li>
+</ul>
+<h3 id="Estimating"><a href="#Estimating" class="headerlink" title="Estimating"></a>Estimating</h3><ul>
+<li>Estimate to avoid surprises and optimize efficiently </li>
+<li>Iterate the schedule with the code</li>
+<li>Make time estimate cautiously</li>
+</ul>
+<p>Link: <a href="/files/notes/The_Pragmatic_Programmer_chapter_1&amp;2.pdf">Mindmap (as PDF format)</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Reading-Notes/" rel="tag"># Reading Notes</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/01/2019-02-18-The-Crowd/" rel="next" title="乌合之众">
+                <i class="fa fa-chevron-left"></i> 乌合之众
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/01/2019-02-22-The-Pragmatic-Programmer-Quick-Reference-Guide/" rel="prev" title="The Pragmatic Programmer Quick Reference Guide">
+                The Pragmatic Programmer Quick Reference Guide <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">EricZhu-42</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#The-Pragmatic-Programmer"><span class="nav-number">1.</span> <span class="nav-text">The Pragmatic Programmer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-A-Pragmatic-Philosophy"><span class="nav-number">1.1.</span> <span class="nav-text">1. A Pragmatic Philosophy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Cat-Ate-My-Source-Code"><span class="nav-number">1.1.1.</span> <span class="nav-text">The Cat Ate My Source Code</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Software-Entropy"><span class="nav-number">1.1.2.</span> <span class="nav-text">Software Entropy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stone-Soup-and-Boiled-Frogs"><span class="nav-number">1.1.3.</span> <span class="nav-text">Stone Soup and Boiled Frogs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Good-Enough-Software"><span class="nav-number">1.1.4.</span> <span class="nav-text">Good-Enough Software</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Your-Knowledge-Portfolio"><span class="nav-number">1.1.5.</span> <span class="nav-text">Your Knowledge Portfolio</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Communicate"><span class="nav-number">1.1.6.</span> <span class="nav-text">Communicate!</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-A-Pragmatic-Approach"><span class="nav-number">1.2.</span> <span class="nav-text">2. A Pragmatic Approach</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Evils-of-Duplication"><span class="nav-number">1.2.1.</span> <span class="nav-text">The  Evils of Duplication</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Orthogonality"><span class="nav-number">1.2.2.</span> <span class="nav-text">Orthogonality</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reversibility"><span class="nav-number">1.2.3.</span> <span class="nav-text">Reversibility</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tracer-Bullets"><span class="nav-number">1.2.4.</span> <span class="nav-text">Tracer Bullets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prototypes-and-Post-it-Notes"><span class="nav-number">1.2.5.</span> <span class="nav-text">Prototypes and Post-it Notes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Domain-Languages"><span class="nav-number">1.2.6.</span> <span class="nav-text">Domain Languages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Estimating"><span class="nav-number">1.2.7.</span> <span class="nav-text">Estimating</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EricZhu-42</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

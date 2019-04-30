@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Python-Requests用法简介">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python-Requests用法简介">
+<meta property="og:url" content="http://yoursite.com/2019/05/01/2019-02-03-python-01/index.html">
+<meta property="og:site_name" content="EricZhu-42&#39;s Blog">
+<meta property="og:description" content="Python-Requests用法简介">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-03T14:48:19.401Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python-Requests用法简介">
+<meta name="twitter:description" content="Python-Requests用法简介">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/05/01/2019-02-03-python-01/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Python-Requests用法简介 | EricZhu-42's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">EricZhu-42's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/2019-02-03-python-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="EricZhu-42">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EricZhu-42's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python-Requests用法简介
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-01 00:20:25" itemprop="dateCreated datePublished" datetime="2019-05-01T00:20:25+08:00">2019-05-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-03 22:48:19" itemprop="dateModified" datetime="2019-02-03T22:48:19+08:00">2019-02-03</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">Python-Requests用法简介</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Requests"><a href="#Requests" class="headerlink" title="Requests"></a>Requests</h1><blockquote>
+<p>Requests is an elegant and simple HTTP library for Python, built for human beings.</p>
+</blockquote>
+<h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><p>使用命令 <code>pip install requests</code> 安装</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><a id="more"></a>
+<p>首先，导入Requests模块：<br><code>import requests</code>  </p>
+<ol>
+<li><p><strong>HTTP基本请求类型</strong>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">r = requests.get(&apos;https://api.github.com/events&apos;)  </span><br><span class="line">r = requests.post(&apos;http://httpbin.org/post&apos;）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>传递URL参数</strong><br>使用 <code>params</code> 关键字参数，以一个字符串字典提供这些参数，注意字典里值为 None 的键都不会被添加到 URL 的查询字符串里。  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">payload = &#123;&apos;key1&apos;: &apos;value1&apos;, &apos;key2&apos;: &apos;value2&apos;&#125;</span><br><span class="line">r = requests.get(&quot;http://httpbin.org/get&quot;, params = payload)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>在POST请求中发送数据</strong><br>传递一个字典给 data 参数，例如  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; payload = &#123;&apos;key1&apos;: &apos;value1&apos;, &apos;key2&apos;: &apos;value2&apos;&#125;</span><br><span class="line">&gt;&gt;&gt; r = requests.post(&quot;http://httpbin.org/post&quot;, data=payload)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>定制请求头</strong><br>传递一个字典给 headers 参数，例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; url = &apos;https://api.github.com/some/endpoint&apos;</span><br><span class="line">&gt;&gt;&gt; headers = &#123;&apos;user-agent&apos;: &apos;my-app/0.0.1&apos;&#125;</span><br><span class="line">&gt;&gt;&gt; r = requests.get(url, headers=headers)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>读取响应内容</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import requests</span><br><span class="line">&gt;&gt;&gt; r = requests.get(&apos;https://api.github.com/events&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li><p>用 <code>r.text</code> 读取服务器响应的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; r.text</span><br><span class="line">u&apos;[&#123;&quot;repository&quot;:&#123;&quot;open_issues&quot;:0,&quot;url&quot;:&quot;https://github.com/...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用 <code>r.encoding</code> 来获得<strong>推测的</strong>文本编码，并可以对其进行修改，改变 <code>r.text</code> 的解析方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; r.encoding</span><br><span class="line">&apos;utf-8&apos;</span><br><span class="line">&gt;&gt;&gt; r.encoding = &apos;ISO-8859-1&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用 <code>r.content</code> 读取二进制的响应内容。例如，可以用返回的二进制数据创建一张图片：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; from PIL import Image</span><br><span class="line">&gt;&gt;&gt; from io import BytesIO</span><br><span class="line">&gt;&gt;&gt; i = Image.open(BytesIO(r.content))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用 <code>r.status_code</code> 检测响应状态码，也可以使用内置的状态码查询对象 <code>requests.codes.ok</code> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; r = requests.get(&apos;http://httpbin.org/get&apos;)</span><br><span class="line">&gt;&gt;&gt; r.status_code</span><br><span class="line">200</span><br><span class="line">&gt;&gt;&gt; r.status_code == requests.codes.ok</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用 <code>r.headers</code> 来获取响应头内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; r.headers</span><br><span class="line">&#123;</span><br><span class="line">    &apos;content-encoding&apos;: &apos;gzip&apos;,</span><br><span class="line">    &apos;transfer-encoding&apos;: &apos;chunked&apos;,</span><br><span class="line">    &apos;connection&apos;: &apos;close&apos;,</span><br><span class="line">    &apos;server&apos;: &apos;nginx/1.0.4&apos;,</span><br><span class="line">    &apos;x-runtime&apos;: &apos;148ms&apos;,</span><br><span class="line">    &apos;etag&apos;: &apos;&quot;e1ca502697e5c9317743dc078f67693f&quot;&apos;,</span><br><span class="line">    &apos;content-type&apos;: &apos;application/json&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用 <code>r.json()</code> 获取经内置JSON解码器处理的JSON数据。该方法会返回一个JSON对象。当JSON解析失败时，r.json()会抛出一个异常。需要注意的是，成功调用 <code>r.json()</code> 并<strong>不</strong>意味着响应的成功。要检查请求是否成功，请使用 <code>r.raise_for_status()</code> 或者检查 <code>r.status_code</code> 是否和你的期望相同。</p>
+</li>
+</ul>
+<ol start="6">
+<li><p><strong>POST一个多部分编码(Multipart-Encoded)的文件</strong><br>注意，请使用二进制模式(binary mode)打开文件，防止 Requests 提供的 Content-Length header 发生错误。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; url = &apos;http://httpbin.org/post&apos;</span><br><span class="line">&gt;&gt;&gt; files = &#123;&apos;file&apos;: open(&apos;report.xls&apos;, &apos;rb&apos;)&#125;</span><br><span class="line">&gt;&gt;&gt; r = requests.post(url, files=files)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>自定义请求头部</strong><br>伪装请求头部是采集时经常用的，我们可以用这个方法来隐藏：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; r = requests.get(&apos;http://www.zhidaow.com&apos;)</span><br><span class="line">&gt;&gt;&gt; print (r.request.headers[&apos;User-Agent&apos;])</span><br><span class="line">&quot;python-requests/1.2.3 CPython/2.7.3 Windows/XP&quot;</span><br><span class="line">&gt;&gt;&gt; headers = &#123;&apos;User-Agent&apos;: &apos;alexkh&apos;&#125;</span><br><span class="line">&gt;&gt;&gt; r = requests.get(&apos;http://www.zhidaow.com&apos;, headers = headers)</span><br><span class="line">&gt;&gt;&gt; print (r.request.headers[&apos;User-Agent&apos;])  </span><br><span class="line">&quot;alexkh&quot;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>超时</strong><br>使用<code>timeout</code>参数使得对象在经过该参数所指定的秒数后停止响应，以此防止程序永远失去响应。<br><em>注意：<code>timeout</code> 仅对连接过程有效，与响应体的下载无关。</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; requests.get(&apos;http://github.com&apos;, timeout=0.001)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">requests.exceptions.Timeout: HTTPConnectionPool(host=&apos;github.com&apos;, port=80): Request timed out. (timeout=0.001)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>错误与异常</strong><br>遇到网络问题（如：DNS 查询失败、拒绝连接等）时，Requests 会抛出一个 <code>ConnectionError</code> 异常。<br>如果 HTTP 请求返回了不成功的状态码， <code>Response.raise_for_status()</code> 会抛出一个 <code>HTTPError</code> 异常。<br>若请求超时，则抛出一个 <code>Timeout</code> 异常。<br>若请求超过了设定的最大重定向次数，则会抛出一个 <code>TooManyRedirects</code> 异常。  </p>
+</li>
+<li><strong>代理</strong><br>如果需要使用代理，你可以通过为任意请求方法提供 <code>proxies</code> 参数来配置单个请求：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">proxies = &#123;</span><br><span class="line">  &quot;http&quot;: &quot;http://10.10.1.10:3128&quot;,</span><br><span class="line">  &quot;https&quot;: &quot;http://10.10.1.10:1080&quot;,</span><br><span class="line">&#125;</span><br><span class="line">requests.get(&quot;http://example.org&quot;, proxies=proxies)</span><br><span class="line">```  </span><br><span class="line">若你的代理需要使用HTTP Basic Auth，可以使用 http://user:password@host/ 语法：</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>proxies = {<br>    “http”: “<a href="http://user:pass@10.10.1.10:3128/&quot;" target="_blank" rel="noopener">http://user:pass@10.10.1.10:3128/&quot;</a>,<br>}<br><code>`</code></p>
+<h2 id="其他链接"><a href="#其他链接" class="headerlink" title="其他链接"></a>其他链接</h2><ul>
+<li><a href="http://cn.python-requests.org/zh_CN/latest/index.html" target="_blank" rel="noopener">Requests官方中文文档</a></li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><a href="http://cn.python-requests.org/zh_CN/latest/index.html" target="_blank" rel="noopener">http://cn.python-requests.org/zh_CN/latest/index.html</a></li>
+<li><a href="https://www.cnblogs.com/lgh344902118/p/6780960.html" target="_blank" rel="noopener">https://www.cnblogs.com/lgh344902118/p/6780960.html</a></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/01/2019-02-03-digital-circuit-01/" rel="next" title="数字电路-概念笔记-01">
+                <i class="fa fa-chevron-left"></i> 数字电路-概念笔记-01
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/01/2019-02-04-digital-circuit-02/" rel="prev" title="数字电路-概念笔记-02">
+                数字电路-概念笔记-02 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">EricZhu-42</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Requests"><span class="nav-number">1.</span> <span class="nav-text">Requests</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装方法"><span class="nav-number">1.1.</span> <span class="nav-text">安装方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法"><span class="nav-number">1.2.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他链接"><span class="nav-number">1.3.</span> <span class="nav-text">其他链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">1.4.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EricZhu-42</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

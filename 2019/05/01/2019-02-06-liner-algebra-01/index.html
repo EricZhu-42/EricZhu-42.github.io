@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="线性代数-概念笔记-01">
+<meta name="keywords" content="liner algebra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线性代数-概念笔记-01">
+<meta property="og:url" content="http://yoursite.com/2019/05/01/2019-02-06-liner-algebra-01/index.html">
+<meta property="og:site_name" content="EricZhu-42&#39;s Blog">
+<meta property="og:description" content="线性代数-概念笔记-01">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-07T15:33:35.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="线性代数-概念笔记-01">
+<meta name="twitter:description" content="线性代数-概念笔记-01">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/05/01/2019-02-06-liner-algebra-01/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>线性代数-概念笔记-01 | EricZhu-42's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">EricZhu-42's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/2019-02-06-liner-algebra-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="EricZhu-42">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EricZhu-42's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">线性代数-概念笔记-01
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-01 00:20:25" itemprop="dateCreated datePublished" datetime="2019-05-01T00:20:25+08:00">2019-05-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-07 23:33:35" itemprop="dateModified" datetime="2019-02-07T23:33:35+08:00">2019-02-07</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">线性代数-概念笔记-01</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="线性空间"><a href="#线性空间" class="headerlink" title="线性空间"></a>线性空间</h1><blockquote>
+<p>关键词：线性空间, 基, 子空间, 线性空间的同构</p>
+</blockquote>
+<h3 id="一、集合与映射"><a href="#一、集合与映射" class="headerlink" title="一、集合与映射"></a>一、集合与映射</h3><ol>
+<li>集合相等：含有完全相同的元素（外延公理）</li>
+<li>映射的复合满足结合律</li>
+</ol>
+<h3 id="二、线性空间的定义与简单性质"><a href="#二、线性空间的定义与简单性质" class="headerlink" title="二、线性空间的定义与简单性质"></a>二、线性空间的定义与简单性质</h3><ol>
+<li>线性空间(Vector space)：定义了加法与数乘运算的数域。（加法群再加上一个域的数乘运算）其中：</li>
+</ol>
+<ul>
+<li>加法满足：交换，结合，有<strong>0</strong>（向量，其实是单位元），每个元素有相对于<strong>0</strong>的负元</li>
+<li>数乘满足：数字1为单位元，数字因子间可结合</li>
+<li>数乘与加法满足：互相可分配  <a id="more"></a>
+</li>
+</ul>
+<ol start="2">
+<li>简单性质</li>
+</ol>
+<ul>
+<li>加法的<strong>0</strong>唯一</li>
+<li>每个元素加法的负元素唯一</li>
+<li>数字0是数乘的<strong>零元</strong>，向量<strong>0</strong>是数乘在变量意义上的零元</li>
+<li>若 $$ k\alpha=0 $$ ，则 $$ k=0 $$ 或 $$ \alpha=0 $$</li>
+</ul>
+<h3 id="三、维数-基与坐标"><a href="#三、维数-基与坐标" class="headerlink" title="三、维数, 基与坐标"></a>三、维数, 基与坐标</h3><ol>
+<li>定义：若线性空间V中有n个线性无关的向量，但没有更多数目的线性无关的向量，则称V为<strong>n维的</strong>。若V中可以找到任意多个线性无关的向量，则称V为<strong>无限维的</strong>。</li>
+<li>定义：在n维线性空间V中，n个线性无关的向量 $$ \epsilon_1, \epsilon_2, …, \epsilon_n $$称为V的一组<strong>基</strong>。</li>
+<li>定义：若$$ \epsilon_1, \epsilon_2, …, \epsilon_n $$是V的一组基，$$ \alpha $$是V中任一向量，则$$ \alpha $$可被基唯一线性表出：$$ \alpha=a_1 \epsilon_1+a_2 \epsilon_2 + … + a_n \epsilon_n $$, 其中系数 $$ a_1, a_2, …, a_n $$ 是被 $$ \alpha $$ 与基唯一确定的，则称 $$ (a_1, a_2, …, a_n) $$ 是 $$ \alpha $$ 在基$$ \epsilon_1, \epsilon_2, …, \epsilon_n $$下的<strong>坐标</strong>。</li>
+<li>若V中n个线性无关的向量 $$ \alpha_1, \alpha_2, …, \alpha_n $$ 可表示出V中任意向量，那V是n维的，而 $$ \alpha_1, \alpha_2, …, \alpha_n $$ 是V的一组基。</li>
+</ol>
+<h3 id="四、基变换与坐标变换"><a href="#四、基变换与坐标变换" class="headerlink" title="四、基变换与坐标变换"></a>四、基变换与坐标变换</h3><ol>
+<li>基 $$ {\epsilon_1}’, {\epsilon_2}’, …, {\epsilon_n}’ $$ 是基 $$ \epsilon_1, \epsilon_2, …, \epsilon_n $$ 的线性组合。记为 $$ ({\epsilon_1}’, {\epsilon_2}’, …, {\epsilon_n}’) = A(\epsilon_1, \epsilon_2, …, \epsilon_n) $$, 称A为由基 $$ \epsilon_1, \epsilon_2, …, \epsilon_n $$ 到基 $$ {\epsilon_1}’, {\epsilon_2}’, …, {\epsilon_n}’ $$ 的<strong>过渡矩阵</strong>。</li>
+<li><strong>向量的坐标变化公式</strong>： $$ \alpha’ = A\alpha $$ 或 $$ \alpha = A^{-1} \alpha’ $$</li>
+</ol>
+<h3 id="五、线性子空间"><a href="#五、线性子空间" class="headerlink" title="五、线性子空间"></a>五、线性子空间</h3><ol>
+<li>定义：数域P上线性空间V的一个非空子集合W称为V的一个<strong>（线性）子空间</strong>，如果W对于V的两种运算也构成数域P上的线性空间。</li>
+<li>定理：若线性空间V的非空子集合W对于V的两种运算封闭，那么W是一个子空间。</li>
+<li>任何一个子空间的维数不能超过整个线性空间的维数。</li>
+<li><strong>零子空间</strong>（只含有零向量的子空间）与V本身称作线性空间V的<strong>平凡子空间</strong>，其他线性子空间称作<strong>非平凡子空间</strong>。</li>
+<li>齐次线性方程组的全部解向量组成齐次线性方程组的<strong>解空间</strong>，其维数等于 $$ n-r $$ .</li>
+<li>线性空间V中向量组 $$ \alpha_1, \alpha_2, …, \alpha_n $$ 所有的线性组合称作<strong>由 $$ \alpha_1, \alpha_2, …, \alpha_n $$ 生成的子空间</strong>，记为 $$ L(\alpha_1, \alpha_2, …, \alpha_n) $$ .</li>
+<li>两个向量组生成相同子空间 $$ \Leftrightarrow $$ 这两个向量组等价。</li>
+<li>$$ L(\alpha_1, \alpha_2, …, \alpha_n) $$ 的维数等于向量组 $$ \alpha_1, \alpha_2, …, \alpha_n $$ 的秩。</li>
+<li>W为数域P上n维线性空间V的一个m维子空间，$$ \alpha_1, \alpha_2, …, \alpha_m $$ 是W的一组基，那么在V中一定能找到n-m个向量$$ \alpha_{m+1}, \alpha_2, …, \alpha_n $$，使$$ \alpha_1, \alpha_2, …, \alpha_n $$ 是V的一组基（即扩充向量组）。</li>
+</ol>
+<h3 id="六、子空间的交与和"><a href="#六、子空间的交与和" class="headerlink" title="六、子空间的交与和"></a>六、子空间的交与和</h3><ol>
+<li>定义： $$ V_1 + V_2 = {\alpha_1 + \alpha_2 \vert \alpha_1 \in V_1, \alpha_2 \in V_2} $$</li>
+<li>定理：若 $$ V_1, V_2 $$ 是线性空间 $$ V $$ 的两个子空间，则他们的交 $$ V_1 \cap V_2 $$ 与和 $$ V_1 + V_2 $$ 也是 $$ V $$ 的子空间。</li>
+<li><strong>定理（维数公式）</strong>：若 $$ V_1, V_2 $$ 是线性空间 $$ V $$ 的两个子空间，那么维 $$ (V_1) $$ + 维 $$ (V_2) = $$ 维 $$ (V_1+V_2) $$ + 维 $$ (V_1 \cap V_2) $$ 。</li>
+<li>推论：若 $$ n $$ 维线性空间V中两个子空间 $$ V_1,V_2 $$  的维数之和大于n，那么 $$ V_1,V_2 $$ 必含有非零的公共向量。</li>
+</ol>
+<h3 id="七、子空间的直和"><a href="#七、子空间的直和" class="headerlink" title="七、子空间的直和"></a>七、子空间的直和</h3><ol>
+<li>子空间的直和是子空间的和的重要特殊情形。</li>
+<li>设 $$ V_1,V_2 $$ 是线性空间 $$ V $$ 的子空间，且和 $$ V_1+V_2 $$ 中每个向量 $$ \alpha $$ 的分解式 $$ \alpha = \alpha_1+\alpha_2, \alpha_1 \in V_1, \alpha_2 \in V_2 $$ 是<strong>唯一</strong>的，则这个和称为<strong>直和</strong>，记为 $$ V_1 \oplus V_2 $$.</li>
+<li>定理：设 $$ V_1,V_2 $$ 是线性空间 $$ V $$ 的子空间，则<strong>以下概念等价</strong>：</li>
+</ol>
+<ul>
+<li>$$ W = V_1+V_2 $$ 是直和 </li>
+<li>等式 $$ \alpha_1+\alpha_2=0, \alpha_i \in V_i (i=1,2) $$ 只有在 $$ \alpha_i $$ 全为零向量时才成立 </li>
+<li>$$ V_1 \cap V_2 = {0} $$ 成立</li>
+<li>维 $$ (V_1) $$ + 维 $$ (V_2) = $$ 维 $$ (V_1+V_2) $$</li>
+</ul>
+<ol start="4">
+<li>定理：设 $$ U $$ 为线性空间 $$ V $$ 的一个子空间，那么一定存在一个子空间 $$ W $$ 使 $$ V = U \oplus W $$.</li>
+<li>直和的多维推广：(3)中定理在多个子空间情况下的推广。</li>
+</ol>
+<h3 id="八、线性空间的同构"><a href="#八、线性空间的同构" class="headerlink" title="八、线性空间的同构"></a>八、线性空间的同构</h3><ol>
+<li>向量与它的坐标间的对应关系，实质上是$$ V $$到 $$ P^n $$的一个双射。</li>
+<li>定义：若线性空间$$V$$到$$V’$$有一个双射$$\sigma$$,且满足以下性质：</li>
+</ol>
+<ul>
+<li>\( \sigma(\alpha + \beta) = \sigma(\alpha)+\sigma(\beta) \)</li>
+<li>\( \sigma(k\alpha) = k\sigma(\alpha) \)<br>其中 $$\alpha,\beta$$是$$V$$中任意向量，$$ k $$是 $$ P $$中任意数，则称$$V$$与$$V’$$<strong>同构</strong>，而$$\sigma$$称作<strong>同构映射</strong>。</li>
+</ul>
+<ol start="3">
+<li>$$ P $$ 上任意一个 $$ n $$ 维线性空间都与 $$ P^n $$ 同构。</li>
+<li>$$ V $$中向量组$$ \alpha_1, \alpha_2, …, \alpha_n $$线性相关 $$ \Leftrightarrow $$ 他们的像 $$ \sigma(\alpha_1), \sigma(\alpha_2), …, \sigma(\alpha_n) $$ 线性相关。</li>
+<li>$$ V $$ 在同构映射 $$\sigma$$ 下的像集合 $$V’$$ 维数与 $$V$$ 相同。</li>
+<li>同构映射的逆映射与两个同构映射的复合还是同构映射。</li>
+<li><strong>数域$$P$$上两个有限维线性空间同构的充要条件为他们有相同的维数</strong>。</li>
+</ol>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<li>王萼芳,石生明. 高等代数(第四版). 高等教育出版社, 2013.</li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/liner-algebra/" rel="tag"># liner algebra</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/01/2019-02-04-digital-circuit-02/" rel="next" title="数字电路-概念笔记-02">
+                <i class="fa fa-chevron-left"></i> 数字电路-概念笔记-02
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/01/2019-02-18-The-Crowd/" rel="prev" title="乌合之众">
+                乌合之众 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">EricZhu-42</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线性空间"><span class="nav-number">1.</span> <span class="nav-text">线性空间</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、集合与映射"><span class="nav-number">1.0.1.</span> <span class="nav-text">一、集合与映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、线性空间的定义与简单性质"><span class="nav-number">1.0.2.</span> <span class="nav-text">二、线性空间的定义与简单性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、维数-基与坐标"><span class="nav-number">1.0.3.</span> <span class="nav-text">三、维数, 基与坐标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、基变换与坐标变换"><span class="nav-number">1.0.4.</span> <span class="nav-text">四、基变换与坐标变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、线性子空间"><span class="nav-number">1.0.5.</span> <span class="nav-text">五、线性子空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、子空间的交与和"><span class="nav-number">1.0.6.</span> <span class="nav-text">六、子空间的交与和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、子空间的直和"><span class="nav-number">1.0.7.</span> <span class="nav-text">七、子空间的直和</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、线性空间的同构"><span class="nav-number">1.0.8.</span> <span class="nav-text">八、线性空间的同构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考资料"><span class="nav-number">1.0.9.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EricZhu-42</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

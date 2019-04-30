@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Basic Notes on pandas">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Basic Notes on pandas">
+<meta property="og:url" content="http://yoursite.com/2019/05/01/2019-03-05-python-05/index.html">
+<meta property="og:site_name" content="EricZhu-42&#39;s Blog">
+<meta property="og:description" content="Basic Notes on pandas">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-07T10:26:35.771Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Basic Notes on pandas">
+<meta name="twitter:description" content="Basic Notes on pandas">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/05/01/2019-03-05-python-05/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Basic Notes on pandas | EricZhu-42's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">EricZhu-42's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/2019-03-05-python-05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="EricZhu-42">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EricZhu-42's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Basic Notes on pandas
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-01 00:20:25" itemprop="dateCreated datePublished" datetime="2019-05-01T00:20:25+08:00">2019-05-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-07 18:26:35" itemprop="dateModified" datetime="2019-03-07T18:26:35+08:00">2019-03-07</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            <div class="post-description">Basic Notes on pandas</div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="About-pandas"><a href="#About-pandas" class="headerlink" title="About pandas"></a>About pandas</h2><p>pandas is a Python package providing fast, flexible, and expressive data structures designed to make working with “relational” or “labeled” data both easy and intuitive. It aims to be the fundamental high-level building block for doing practical, real world data analysis in Python.</p>
+<p>pandas is well suited for many different kinds of data:</p>
+<ul>
+<li>Tabular data with heterogeneously-typed columns, as in an SQL table or Excel spreadsheet</li>
+<li>Ordered and unordered (not necessarily fixed-frequency) time series data.</li>
+<li>Arbitrary matrix data (homogeneously typed or heterogeneous) with row and column labels</li>
+<li>Any other form of observational / statistical data sets. The data actually need not be labeled at all to be placed into a pandas data structure</li>
+</ul>
+<a id="more"></a>
+<h2 id="Data-Structures"><a href="#Data-Structures" class="headerlink" title="Data Structures"></a>Data Structures</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">Dimensions</th>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">Series</td>
+<td style="text-align:center">1D labeled homogeneously-typed array</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">DataFrame</td>
+<td style="text-align:center">General 2D labeled, size-mutable tabular structure with potentially heterogeneously-typed column</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Mutability-and-copying-of-data"><a href="#Mutability-and-copying-of-data" class="headerlink" title="Mutability and copying of data"></a>Mutability and copying of data</h2><p>All pandas data structures are value-mutable (the values they contain can be altered) but not always size-mutable. The length of a Series cannot be changed, but, for example, columns can be inserted into a DataFrame. However, the vast majority of methods produce new objects and leave the input data untouched. In general we like to <strong>favor immutability</strong> where sensible.</p>
+<p>Customarily, we import as follows:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">1</span>]: <span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: <span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
+<h2 id="Object-Creation"><a href="#Object-Creation" class="headerlink" title="Object Creation"></a>Object Creation</h2><p>Creating a <a href="http://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series" target="_blank" rel="noopener"><code>Series</code></a> by passing a list of values, letting pandas create a default integer index:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">3</span>]: s = pd.Series([<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, np.nan, <span class="number">6</span>, <span class="number">8</span>])</span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: s</span><br><span class="line">Out[<span class="number">4</span>]: </span><br><span class="line"><span class="number">0</span>    <span class="number">1.0</span></span><br><span class="line"><span class="number">1</span>    <span class="number">3.0</span></span><br><span class="line"><span class="number">2</span>    <span class="number">5.0</span></span><br><span class="line"><span class="number">3</span>    NaN</span><br><span class="line"><span class="number">4</span>    <span class="number">6.0</span></span><br><span class="line"><span class="number">5</span>    <span class="number">8.0</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
+<h2 id="Viewing-Data"><a href="#Viewing-Data" class="headerlink" title="Viewing Data"></a>Viewing Data</h2><p>Here is how to view the top and bottom rows of the frame:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">13</span>]: df.head()</span><br><span class="line">Out[<span class="number">13</span>]: </span><br><span class="line">                   A         B         C         D</span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-01</span>  <span class="number">0.469112</span> <span class="number">-0.282863</span> <span class="number">-1.509059</span> <span class="number">-1.135632</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.212112</span> <span class="number">-0.173215</span>  <span class="number">0.119209</span> <span class="number">-1.044236</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-03</span> <span class="number">-0.861849</span> <span class="number">-2.104569</span> <span class="number">-0.494929</span>  <span class="number">1.071804</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-04</span>  <span class="number">0.721555</span> <span class="number">-0.706771</span> <span class="number">-1.039575</span>  <span class="number">0.271860</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-05</span> <span class="number">-0.424972</span>  <span class="number">0.567020</span>  <span class="number">0.276232</span> <span class="number">-1.087401</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: df.tail(<span class="number">3</span>)</span><br><span class="line">Out[<span class="number">14</span>]: </span><br><span class="line">                   A         B         C         D</span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-04</span>  <span class="number">0.721555</span> <span class="number">-0.706771</span> <span class="number">-1.039575</span>  <span class="number">0.271860</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-05</span> <span class="number">-0.424972</span>  <span class="number">0.567020</span>  <span class="number">0.276232</span> <span class="number">-1.087401</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-06</span> <span class="number">-0.673690</span>  <span class="number">0.113648</span> <span class="number">-1.478427</span>  <span class="number">0.524988</span></span><br></pre></td></tr></table></figure>
+<p>Display the index, columns:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">15</span>]: df.index</span><br><span class="line">Out[<span class="number">15</span>]: </span><br><span class="line">DatetimeIndex([<span class="string">'2013-01-01'</span>, <span class="string">'2013-01-02'</span>, <span class="string">'2013-01-03'</span>, <span class="string">'2013-01-04'</span>,</span><br><span class="line">               <span class="string">'2013-01-05'</span>, <span class="string">'2013-01-06'</span>],</span><br><span class="line">              dtype=<span class="string">'datetime64[ns]'</span>, freq=<span class="string">'D'</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">16</span>]: df.columns</span><br><span class="line">Out[<span class="number">16</span>]: Index([<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>], dtype=<span class="string">'object'</span>)</span><br></pre></td></tr></table></figure>
+<p><code>DataFrame.to_numpy()</code> gives a NumPy representation of the underlying data.</p>
+<p><code>describe()</code> shows a quick statistic summary of your data:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">19</span>]: df.describe()</span><br><span class="line">Out[<span class="number">19</span>]: </span><br><span class="line">              A         B         C         D</span><br><span class="line">count  <span class="number">6.000000</span>  <span class="number">6.000000</span>  <span class="number">6.000000</span>  <span class="number">6.000000</span></span><br><span class="line">mean   <span class="number">0.073711</span> <span class="number">-0.431125</span> <span class="number">-0.687758</span> <span class="number">-0.233103</span></span><br><span class="line">std    <span class="number">0.843157</span>  <span class="number">0.922818</span>  <span class="number">0.779887</span>  <span class="number">0.973118</span></span><br><span class="line">min   <span class="number">-0.861849</span> <span class="number">-2.104569</span> <span class="number">-1.509059</span> <span class="number">-1.135632</span></span><br><span class="line"><span class="number">25</span>%   <span class="number">-0.611510</span> <span class="number">-0.600794</span> <span class="number">-1.368714</span> <span class="number">-1.076610</span></span><br><span class="line"><span class="number">50</span>%    <span class="number">0.022070</span> <span class="number">-0.228039</span> <span class="number">-0.767252</span> <span class="number">-0.386188</span></span><br><span class="line"><span class="number">75</span>%    <span class="number">0.658444</span>  <span class="number">0.041933</span> <span class="number">-0.034326</span>  <span class="number">0.461706</span></span><br><span class="line">max    <span class="number">1.212112</span>  <span class="number">0.567020</span>  <span class="number">0.276232</span>  <span class="number">1.071804</span></span><br></pre></td></tr></table></figure>
+<p>Transposing your data:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">20</span>]: df.T</span><br><span class="line">Out[<span class="number">20</span>]: </span><br><span class="line">   <span class="number">2013</span><span class="number">-01</span><span class="number">-01</span>  <span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">2013</span><span class="number">-01</span><span class="number">-03</span>  <span class="number">2013</span><span class="number">-01</span><span class="number">-04</span>  <span class="number">2013</span><span class="number">-01</span><span class="number">-05</span>  <span class="number">2013</span><span class="number">-01</span><span class="number">-06</span></span><br><span class="line">A    <span class="number">0.469112</span>    <span class="number">1.212112</span>   <span class="number">-0.861849</span>    <span class="number">0.721555</span>   <span class="number">-0.424972</span>   <span class="number">-0.673690</span></span><br><span class="line">B   <span class="number">-0.282863</span>   <span class="number">-0.173215</span>   <span class="number">-2.104569</span>   <span class="number">-0.706771</span>    <span class="number">0.567020</span>    <span class="number">0.113648</span></span><br><span class="line">C   <span class="number">-1.509059</span>    <span class="number">0.119209</span>   <span class="number">-0.494929</span>   <span class="number">-1.039575</span>    <span class="number">0.276232</span>   <span class="number">-1.478427</span></span><br><span class="line">D   <span class="number">-1.135632</span>   <span class="number">-1.044236</span>    <span class="number">1.071804</span>    <span class="number">0.271860</span>   <span class="number">-1.087401</span>    <span class="number">0.524988</span></span><br></pre></td></tr></table></figure>
+<h2 id="Selection"><a href="#Selection" class="headerlink" title="Selection"></a>Selection</h2><p>Selecting a single column, which yields a <code>Series</code>, equivalent to <code>df.A</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">23</span>]: df[<span class="string">'A'</span>]</span><br><span class="line">Out[<span class="number">23</span>]: </span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-01</span>    <span class="number">0.469112</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>    <span class="number">1.212112</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-03</span>   <span class="number">-0.861849</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-04</span>    <span class="number">0.721555</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-05</span>   <span class="number">-0.424972</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-06</span>   <span class="number">-0.673690</span></span><br><span class="line">Freq: D, Name: A, dtype: float64</span><br></pre></td></tr></table></figure>
+<p>Selecting via <code>[]</code>, which slices the rows.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">24</span>]: df[<span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line">Out[<span class="number">24</span>]: </span><br><span class="line">                   A         B         C         D</span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-01</span>  <span class="number">0.469112</span> <span class="number">-0.282863</span> <span class="number">-1.509059</span> <span class="number">-1.135632</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.212112</span> <span class="number">-0.173215</span>  <span class="number">0.119209</span> <span class="number">-1.044236</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-03</span> <span class="number">-0.861849</span> <span class="number">-2.104569</span> <span class="number">-0.494929</span>  <span class="number">1.071804</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">25</span>]: df[<span class="string">'20130102'</span>:<span class="string">'20130104'</span>]</span><br><span class="line">Out[<span class="number">25</span>]: </span><br><span class="line">                   A         B         C         D</span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.212112</span> <span class="number">-0.173215</span>  <span class="number">0.119209</span> <span class="number">-1.044236</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-03</span> <span class="number">-0.861849</span> <span class="number">-2.104569</span> <span class="number">-0.494929</span>  <span class="number">1.071804</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-04</span>  <span class="number">0.721555</span> <span class="number">-0.706771</span> <span class="number">-1.039575</span>  <span class="number">0.271860</span></span><br></pre></td></tr></table></figure>
+<p>For getting a cross section using a label:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">26</span>]: df.loc[dates[<span class="number">0</span>]]</span><br><span class="line">Out[<span class="number">26</span>]: </span><br><span class="line">A    <span class="number">0.469112</span></span><br><span class="line">B   <span class="number">-0.282863</span></span><br><span class="line">C   <span class="number">-1.509059</span></span><br><span class="line">D   <span class="number">-1.135632</span></span><br><span class="line">Name: <span class="number">2013</span><span class="number">-01</span><span class="number">-01</span> <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span>, dtype: float64</span><br></pre></td></tr></table></figure>
+<p>Using a single column’s values to select data.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">39</span>]: df[df.A &gt; <span class="number">0</span>]</span><br><span class="line">Out[<span class="number">39</span>]: </span><br><span class="line">                   A         B         C         D</span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-01</span>  <span class="number">0.469112</span> <span class="number">-0.282863</span> <span class="number">-1.509059</span> <span class="number">-1.135632</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.212112</span> <span class="number">-0.173215</span>  <span class="number">0.119209</span> <span class="number">-1.044236</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-04</span>  <span class="number">0.721555</span> <span class="number">-0.706771</span> <span class="number">-1.039575</span>  <span class="number">0.271860</span></span><br></pre></td></tr></table></figure>
+<p>Selecting values from a DataFrame where a boolean condition is met.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">40</span>]: df[df &gt; <span class="number">0</span>]</span><br><span class="line">Out[<span class="number">40</span>]: </span><br><span class="line">                   A         B         C         D</span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-01</span>  <span class="number">0.469112</span>       NaN       NaN       NaN</span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.212112</span>       NaN  <span class="number">0.119209</span>       NaN</span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-03</span>       NaN       NaN       NaN  <span class="number">1.071804</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-04</span>  <span class="number">0.721555</span>       NaN       NaN  <span class="number">0.271860</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-05</span>       NaN  <span class="number">0.567020</span>  <span class="number">0.276232</span>       NaN</span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-06</span>       NaN  <span class="number">0.113648</span>       NaN  <span class="number">0.524988</span></span><br></pre></td></tr></table></figure>
+<p>Setting a new column automatically aligns the data by the indexes.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">45</span>]: s1 = pd.Series([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], index=pd.date_range(<span class="string">'20130102'</span>, periods=<span class="number">6</span>))</span><br><span class="line"></span><br><span class="line">In [<span class="number">46</span>]: s1</span><br><span class="line">Out[<span class="number">46</span>]: </span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>    <span class="number">1</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-03</span>    <span class="number">2</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-04</span>    <span class="number">3</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-05</span>    <span class="number">4</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-06</span>    <span class="number">5</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-07</span>    <span class="number">6</span></span><br><span class="line">Freq: D, dtype: int64</span><br><span class="line"></span><br><span class="line">In [<span class="number">47</span>]: df[<span class="string">'F'</span>] = s1</span><br></pre></td></tr></table></figure>
+<h2 id="Missing-Data"><a href="#Missing-Data" class="headerlink" title="Missing Data"></a>Missing Data</h2><p>pandas primarily uses the value <code>np.nan</code> to represent missing data. It is by default not included in computations. </p>
+<p>Reindexing allows you to change/add/delete the index on a specified axis. This returns a copy of the data.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">55</span>]: df1 = df.reindex(index=dates[<span class="number">0</span>:<span class="number">4</span>], columns=list(df.columns) + [<span class="string">'E'</span>])</span><br><span class="line"></span><br><span class="line">In [<span class="number">56</span>]: df1.loc[dates[<span class="number">0</span>]:dates[<span class="number">1</span>], <span class="string">'E'</span>] = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">57</span>]: df1</span><br><span class="line">Out[<span class="number">57</span>]: </span><br><span class="line">                   A         B         C  D    F    E</span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-01</span>  <span class="number">0.000000</span>  <span class="number">0.000000</span> <span class="number">-1.509059</span>  <span class="number">5</span>  NaN  <span class="number">1.0</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.212112</span> <span class="number">-0.173215</span>  <span class="number">0.119209</span>  <span class="number">5</span>  <span class="number">1.0</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-03</span> <span class="number">-0.861849</span> <span class="number">-2.104569</span> <span class="number">-0.494929</span>  <span class="number">5</span>  <span class="number">2.0</span>  NaN</span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-04</span>  <span class="number">0.721555</span> <span class="number">-0.706771</span> <span class="number">-1.039575</span>  <span class="number">5</span>  <span class="number">3.0</span>  NaN</span><br></pre></td></tr></table></figure>
+<p>To drop any rows that have missing data.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">58</span>]: df1.dropna(how=<span class="string">'any'</span>)</span><br><span class="line">Out[<span class="number">58</span>]: </span><br><span class="line">                   A         B         C  D    F    E</span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.212112</span> <span class="number">-0.173215</span>  <span class="number">0.119209</span>  <span class="number">5</span>  <span class="number">1.0</span>  <span class="number">1.0</span></span><br></pre></td></tr></table></figure>
+<p>Filling missing data.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">59</span>]: df1.fillna(value=<span class="number">5</span>)</span><br><span class="line">Out[<span class="number">59</span>]: </span><br><span class="line">                   A         B         C  D    F    E</span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-01</span>  <span class="number">0.000000</span>  <span class="number">0.000000</span> <span class="number">-1.509059</span>  <span class="number">5</span>  <span class="number">5.0</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.212112</span> <span class="number">-0.173215</span>  <span class="number">0.119209</span>  <span class="number">5</span>  <span class="number">1.0</span>  <span class="number">1.0</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-03</span> <span class="number">-0.861849</span> <span class="number">-2.104569</span> <span class="number">-0.494929</span>  <span class="number">5</span>  <span class="number">2.0</span>  <span class="number">5.0</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-04</span>  <span class="number">0.721555</span> <span class="number">-0.706771</span> <span class="number">-1.039575</span>  <span class="number">5</span>  <span class="number">3.0</span>  <span class="number">5.0</span></span><br></pre></td></tr></table></figure>
+<h2 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h2><p>Operations in general <em>exclude</em> missing data.</p>
+<p>Performing a descriptive statistic:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">61</span>]: df.mean()</span><br><span class="line">Out[<span class="number">61</span>]: </span><br><span class="line">A   <span class="number">-0.004474</span></span><br><span class="line">B   <span class="number">-0.383981</span></span><br><span class="line">C   <span class="number">-0.687758</span></span><br><span class="line">D    <span class="number">5.000000</span></span><br><span class="line">F    <span class="number">3.000000</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
+<p>Applying functions to the data:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">66</span>]: df.apply(np.cumsum)</span><br><span class="line">Out[<span class="number">66</span>]: </span><br><span class="line">                   A         B         C   D     F</span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-01</span>  <span class="number">0.000000</span>  <span class="number">0.000000</span> <span class="number">-1.509059</span>   <span class="number">5</span>   NaN</span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.212112</span> <span class="number">-0.173215</span> <span class="number">-1.389850</span>  <span class="number">10</span>   <span class="number">1.0</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-03</span>  <span class="number">0.350263</span> <span class="number">-2.277784</span> <span class="number">-1.884779</span>  <span class="number">15</span>   <span class="number">3.0</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-04</span>  <span class="number">1.071818</span> <span class="number">-2.984555</span> <span class="number">-2.924354</span>  <span class="number">20</span>   <span class="number">6.0</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-05</span>  <span class="number">0.646846</span> <span class="number">-2.417535</span> <span class="number">-2.648122</span>  <span class="number">25</span>  <span class="number">10.0</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-06</span> <span class="number">-0.026844</span> <span class="number">-2.303886</span> <span class="number">-4.126549</span>  <span class="number">30</span>  <span class="number">15.0</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">67</span>]: df.apply(<span class="keyword">lambda</span> x: x.max() - x.min())</span><br><span class="line">Out[<span class="number">67</span>]: </span><br><span class="line">A    <span class="number">2.073961</span></span><br><span class="line">B    <span class="number">2.671590</span></span><br><span class="line">C    <span class="number">1.785291</span></span><br><span class="line">D    <span class="number">0.000000</span></span><br><span class="line">F    <span class="number">4.000000</span></span><br><span class="line">dtype: float64</span><br></pre></td></tr></table></figure>
+<p>Series is equipped with a set of string processing methods in the str attribute that make it easy to operate on each element of the array, as in the code snippet below.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">71</span>]: s = pd.Series([<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'Aaba'</span>, <span class="string">'Baca'</span>, np.nan, <span class="string">'CABA'</span>, <span class="string">'dog'</span>, <span class="string">'cat'</span>])</span><br><span class="line"></span><br><span class="line">In [<span class="number">72</span>]: s.str.lower()</span><br><span class="line">Out[<span class="number">72</span>]: </span><br><span class="line"><span class="number">0</span>       a</span><br><span class="line"><span class="number">1</span>       b</span><br><span class="line"><span class="number">2</span>       c</span><br><span class="line"><span class="number">3</span>    aaba</span><br><span class="line"><span class="number">4</span>    baca</span><br><span class="line"><span class="number">5</span>     NaN</span><br><span class="line"><span class="number">6</span>    caba</span><br><span class="line"><span class="number">7</span>     dog</span><br><span class="line"><span class="number">8</span>     cat</span><br><span class="line">dtype: object</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>For detailed usage of pandas, refer to the following documentation directly.</p>
+</blockquote>
+<h2 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h2><ol>
+<li><a href="http://pandas.pydata.org/pandas-docs/stable/index.html" target="_blank" rel="noopener">pandas 0.24.1 documentation</a></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/01/2019-02-28-python-04/" rel="next" title="Basic Notes on NumPy">
+                <i class="fa fa-chevron-left"></i> Basic Notes on NumPy
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/01/2019-03-09-python-06/" rel="prev" title="Basic Notes on Scrapy">
+                Basic Notes on Scrapy <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">EricZhu-42</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#About-pandas"><span class="nav-number">1.</span> <span class="nav-text">About pandas</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Structures"><span class="nav-number">2.</span> <span class="nav-text">Data Structures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mutability-and-copying-of-data"><span class="nav-number">3.</span> <span class="nav-text">Mutability and copying of data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-Creation"><span class="nav-number">4.</span> <span class="nav-text">Object Creation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Viewing-Data"><span class="nav-number">5.</span> <span class="nav-text">Viewing Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selection"><span class="nav-number">6.</span> <span class="nav-text">Selection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Missing-Data"><span class="nav-number">7.</span> <span class="nav-text">Missing Data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Operations"><span class="nav-number">8.</span> <span class="nav-text">Operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">9.</span> <span class="nav-text">References:</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">EricZhu-42</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
