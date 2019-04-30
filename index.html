@@ -286,7 +286,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/2019-02-22-The-Pragmatic-Programmer-Quick-Reference-Guide/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/26/python-09/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="EricZhu-42">
@@ -306,7 +306,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/01/2019-02-22-The-Pragmatic-Programmer-Quick-Reference-Guide/" class="post-title-link" itemprop="url">The Pragmatic Programmer Quick Reference Guide</a>
+                <a href="/2019/03/26/python-09/" class="post-title-link" itemprop="url">Functional Programming of Python</a>
               
             
           </h1>
@@ -331,7 +331,7 @@
                 
               
 
-              <time title="创建时间：2019-05-01 00:20:25" itemprop="dateCreated datePublished" datetime="2019-05-01T00:20:25+08:00">2019-05-01</time>
+              <time title="创建时间：2019-03-26 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-26T00:00:00+08:00">2019-03-26</time>
             
 
             
@@ -348,7 +348,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-03 17:53:21" itemprop="dateModified" datetime="2019-03-03T17:53:21+08:00">2019-03-03</time>
+                <time title="修改时间：2019-05-01 00:40:28" itemprop="dateModified" datetime="2019-05-01T00:40:28+08:00">2019-05-01</time>
               
             
           </span>
@@ -383,11 +383,364 @@
 
       
         
-          The Pragmatic Programmer Quick Reference Guide
+          <p>以下介绍Python中<strong>函数式编程</strong>的一些基础知识。</p>
+<h4 id="高阶函数-Higher-order-Function"><a href="#高阶函数-Higher-order-Function" class="headerlink" title="高阶函数 (Higher-order Function)"></a>高阶函数 (Higher-order Function)</h4><ol>
+<li><p>什么是高阶函数？</p>
+<p><strong>一切</strong>的Python对象都是<strong>第一类对象</strong>，这意味着可以将一切可命名的对象直接当作数据进行处理（如函数，模块，异常等）。因此，变量可以指向一个函数，一切可以由变量占据的位置也可以由函数替代。</p>
+<p><strong>高阶函数</strong>指接受一个函数作为参数的函数。以下为一个简单的例子。</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x, y, f)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> f(x) + f(y)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>map() &amp; reduce()</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/05/01/2019-02-22-The-Pragmatic-Programmer-Quick-Reference-Guide/">
+              <a class="btn" href="/2019/03/26/python-09/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </li></ol></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/21/python-08/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="EricZhu-42">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EricZhu-42's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/21/python-08/" class="post-title-link" itemprop="url">Notes on "Python Cookbook"</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-21 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-21T00:00:00+08:00">2019-03-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-01 00:40:44" itemprop="dateModified" datetime="2019-05-01T00:40:44+08:00">2019-05-01</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="Data-Structure-and-Algorism"><a href="#Data-Structure-and-Algorism" class="headerlink" title="Data Structure and Algorism"></a>Data Structure and Algorism</h2><ol>
+<li><p>Unpacking assignment can be applied to any iterable object.</p>
+</li>
+<li><p>Use <code>*temp</code> to unpack values of an uncertain number.<br> Use <code>_</code> to declare a variable that you want to discard.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">drop_first_last</span><span class="params">(grades)</span>:</span></span><br><span class="line">    first, *middle, last = grades	<span class="comment">#*middle is a List</span></span><br><span class="line">    <span class="keyword">return</span> avg(middle)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Use <code>heapq.nlargest()</code> and <code>heapq.nsmallest()</code> to get the largest/smallest n-elements in a container.</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/21/python-08/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </li></ol></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/12/python-07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="EricZhu-42">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EricZhu-42's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/12/python-07/" class="post-title-link" itemprop="url">Tricks for Python</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-12 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-12T00:00:00+08:00">2019-03-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-01 00:40:57" itemprop="dateModified" datetime="2019-05-01T00:40:57+08:00">2019-05-01</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Here are some tricks useful (to Python beginners like me) when writing Python code.</p>
+<h2 id="Details-about-some-built-in-functions"><a href="#Details-about-some-built-in-functions" class="headerlink" title="Details about some built-in functions"></a>Details about some built-in functions</h2><ol>
+<li><p><strong>abs(x)</strong></p>
+<p>When the argument <code>x</code> is a complex number, this function will return the magnitude of <code>x</code>. </p>
+<p>Here is an example: </p>
+<ul>
+<li>For <code>x=1+2j</code> , <code>abs(x)</code> will get $$ \sqrt{2} $$</li>
+</ul>
+</li>
+<li><p><strong>all(A); any(A)</strong></p>
+<p>Return <code>True</code> if all/any element of the <em>iterable</em> A is true.</p>
+</li>
+<li><p><strong>format()</strong></p>
+<p>It can be used this way to replace <code>bin()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>format(<span class="number">14</span>, <span class="string">'b'</span>)</span><br><span class="line"><span class="number">1110</span></span><br></pre></td></tr></table></figure>
+<p>A typical use of <code>format</code> goes like this:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = <span class="number">10</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>y = <span class="number">-5.0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="string">"x=&#123;:d&#125;,y=&#123;:.2f&#125;"</span>.format(x,y))</span><br><span class="line">x=<span class="number">10</span>,y=<span class="number">-5.00</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/12/python-07/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -447,7 +800,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/2019-02-21-The-Pragmatic-Programmer-chapter-1&2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/09/python-06/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="EricZhu-42">
@@ -467,7 +820,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/01/2019-02-21-The-Pragmatic-Programmer-chapter-1&2/" class="post-title-link" itemprop="url">The Pragmatic Programmer, Chapter 1&2</a>
+                <a href="/2019/03/09/python-06/" class="post-title-link" itemprop="url">Basic Notes on Scrapy</a>
               
             
           </h1>
@@ -492,7 +845,7 @@
                 
               
 
-              <time title="创建时间：2019-05-01 00:20:25" itemprop="dateCreated datePublished" datetime="2019-05-01T00:20:25+08:00">2019-05-01</time>
+              <time title="创建时间：2019-03-09 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-09T00:00:00+08:00">2019-03-09</time>
             
 
             
@@ -509,7 +862,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-21 23:28:03" itemprop="dateModified" datetime="2019-02-21T23:28:03+08:00">2019-02-21</time>
+                <time title="修改时间：2019-05-01 00:41:13" itemprop="dateModified" datetime="2019-05-01T00:41:13+08:00">2019-05-01</time>
               
             
           </span>
@@ -544,11 +897,13 @@
 
       
         
-          Notes-The Pragmatic Programmer, Chapter 1&2
+          <h2 id="About-Scrapy"><a href="#About-Scrapy" class="headerlink" title="About Scrapy"></a>About Scrapy</h2><p>Scrapy is an application framework for crawling web sites and extracting structured data which can be used for a wide range of useful applications, like data mining, information processing or historical archival.</p>
+<h2 id="Our-first-Spider"><a href="#Our-first-Spider" class="headerlink" title="Our first Spider"></a>Our first Spider</h2><p>Spiders are classes that you define and that Scrapy uses to scrape information from a website (or a group of websites). They must subclass <code>scrapy.Spider</code> and define the initial requests to make, optionally how to follow links in the pages, and how to parse the downloaded page content to extract data.</p>
+<p>Here is the code for our first Spider.</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/05/01/2019-02-21-The-Pragmatic-Programmer-chapter-1&2/">
+              <a class="btn" href="/2019/03/09/python-06/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -608,7 +963,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/2019-02-18-The-Crowd/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/python-05/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="EricZhu-42">
@@ -628,7 +983,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/01/2019-02-18-The-Crowd/" class="post-title-link" itemprop="url">乌合之众</a>
+                <a href="/2019/03/05/python-05/" class="post-title-link" itemprop="url">Basic Notes on pandas</a>
               
             
           </h1>
@@ -653,7 +1008,7 @@
                 
               
 
-              <time title="创建时间：2019-05-01 00:20:25" itemprop="dateCreated datePublished" datetime="2019-05-01T00:20:25+08:00">2019-05-01</time>
+              <time title="创建时间：2019-03-05 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-05T00:00:00+08:00">2019-03-05</time>
             
 
             
@@ -670,7 +1025,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-21 23:27:10" itemprop="dateModified" datetime="2019-02-21T23:27:10+08:00">2019-02-21</time>
+                <time title="修改时间：2019-05-01 00:41:37" itemprop="dateModified" datetime="2019-05-01T00:41:37+08:00">2019-05-01</time>
               
             
           </span>
@@ -705,11 +1060,18 @@
 
       
         
-          乌合之众
+          <h2 id="About-pandas"><a href="#About-pandas" class="headerlink" title="About pandas"></a>About pandas</h2><p>pandas is a Python package providing fast, flexible, and expressive data structures designed to make working with “relational” or “labeled” data both easy and intuitive. It aims to be the fundamental high-level building block for doing practical, real world data analysis in Python.</p>
+<p>pandas is well suited for many different kinds of data:</p>
+<ul>
+<li>Tabular data with heterogeneously-typed columns, as in an SQL table or Excel spreadsheet</li>
+<li>Ordered and unordered (not necessarily fixed-frequency) time series data.</li>
+<li>Arbitrary matrix data (homogeneously typed or heterogeneous) with row and column labels</li>
+<li>Any other form of observational / statistical data sets. The data actually need not be labeled at all to be placed into a pandas data structure</li>
+</ul>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/05/01/2019-02-18-The-Crowd/">
+              <a class="btn" href="/2019/03/05/python-05/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -769,7 +1131,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/2019-02-06-liner-algebra-01/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/28/python-04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="EricZhu-42">
@@ -789,7 +1151,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/01/2019-02-06-liner-algebra-01/" class="post-title-link" itemprop="url">线性代数-概念笔记-01</a>
+                <a href="/2019/02/28/python-04/" class="post-title-link" itemprop="url">Basic Notes on NumPy</a>
               
             
           </h1>
@@ -814,7 +1176,7 @@
                 
               
 
-              <time title="创建时间：2019-05-01 00:20:25" itemprop="dateCreated datePublished" datetime="2019-05-01T00:20:25+08:00">2019-05-01</time>
+              <time title="创建时间：2019-02-28 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-28T00:00:00+08:00">2019-02-28</time>
             
 
             
@@ -831,7 +1193,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-07 23:33:35" itemprop="dateModified" datetime="2019-02-07T23:33:35+08:00">2019-02-07</time>
+                <time title="修改时间：2019-05-01 00:41:50" itemprop="dateModified" datetime="2019-05-01T00:41:50+08:00">2019-05-01</time>
               
             
           </span>
@@ -866,11 +1228,18 @@
 
       
         
-          线性代数-概念笔记-01
+          <h2 id="About-NumPy"><a href="#About-NumPy" class="headerlink" title="About NumPy"></a>About NumPy</h2><p>​    NumPy is the fundamental package for scientific computing with Python. It contains among other things:</p>
+<ul>
+<li>a powerful N-dimensional array object</li>
+<li>sophisticated (broadcasting) functions</li>
+<li>tools for integrating C/C++ and Fortran code</li>
+<li>useful linear algebra, Fourier transform, and random number capabilities</li>
+</ul>
+<h2 id="The-Basics"><a href="#The-Basics" class="headerlink" title="The Basics"></a>The Basics</h2><p>​    NumPy’s array class is called <code>ndarray</code>. It is also known by the alias <code>array</code>. In NumPy dimensions are called <em>axes</em>.</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/05/01/2019-02-06-liner-algebra-01/">
+              <a class="btn" href="/2019/02/28/python-04/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -930,7 +1299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/2019-02-04-digital-circuit-02/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/26/python-03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="EricZhu-42">
@@ -950,7 +1319,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/01/2019-02-04-digital-circuit-02/" class="post-title-link" itemprop="url">数字电路-概念笔记-02</a>
+                <a href="/2019/02/26/python-03/" class="post-title-link" itemprop="url">Notes on "Style Guide for Python Code"</a>
               
             
           </h1>
@@ -975,7 +1344,7 @@
                 
               
 
-              <time title="创建时间：2019-05-01 00:20:25" itemprop="dateCreated datePublished" datetime="2019-05-01T00:20:25+08:00">2019-05-01</time>
+              <time title="创建时间：2019-02-26 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-26T00:00:00+08:00">2019-02-26</time>
             
 
             
@@ -992,7 +1361,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-15 22:44:58" itemprop="dateModified" datetime="2019-03-15T22:44:58+08:00">2019-03-15</time>
+                <time title="修改时间：2019-05-01 00:42:02" itemprop="dateModified" datetime="2019-05-01T00:42:02+08:00">2019-05-01</time>
               
             
           </span>
@@ -1027,11 +1396,190 @@
 
       
         
-          数字电路-概念笔记-02
+          <p><strong>This article is an abstract of <em>Style Guide for Python Code</em> by python-dev.</strong></p>
+<p>To see the full document, click <a href="https://www.python.org/dev/peps/pep-0008/" target="_blank" rel="noopener">HERE</a></p>
+<h2 id="Basic-Principles"><a href="#Basic-Principles" class="headerlink" title="Basic Principles"></a>Basic Principles</h2><blockquote>
+<p>Code is read much more often than it is written. <strong>Readability counts.</strong></p>
+</blockquote>
+<p>The guidelines provided here are intended to improve the readability of code and make it consistent across the wide spectrum of Python code.</p>
+<p>Consistency with this style guide is important. Consistency within a project is more important. <strong>Consistency within one module or function is the most important.</strong></p>
+<p>In particular: do not break backwards compatibility just to comply with this article!</p>
+<h2 id="Code-Lay-out"><a href="#Code-Lay-out" class="headerlink" title="Code Lay-out"></a>Code Lay-out</h2><ol>
+<li><p><strong>Indentation</strong>  </p>
+<p>Use 4 spaces per indentation level.  </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/05/01/2019-02-04-digital-circuit-02/">
+              <a class="btn" href="/2019/02/26/python-03/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </li></ol></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/26/python-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="EricZhu-42">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EricZhu-42's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/26/python-02/" class="post-title-link" itemprop="url">Python-Brief Introduction of Grammar</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-26 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-26T00:00:00+08:00">2019-02-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-01 00:42:14" itemprop="dateModified" datetime="2019-05-01T00:42:14+08:00">2019-05-01</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>​    This article gives a brief introduction of grammar of Python</p>
+<h3 id="Basic-Grammar"><a href="#Basic-Grammar" class="headerlink" title="Basic Grammar"></a>Basic Grammar</h3><ol>
+<li><p><strong>Definition &amp; assignment of variables</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">foo = <span class="number">1</span></span><br><span class="line">bar, baz = <span class="string">"Hello world!"</span>, <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Condition statements</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> a &lt; b:</span><br><span class="line">​	<span class="keyword">print</span> (<span class="string">"YES"</span>)</span><br><span class="line"><span class="keyword">elif</span> a &gt; b:</span><br><span class="line">​	<span class="keyword">print</span> (<span class="string">"NO"</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">​	<span class="keyword">pass</span>	<span class="comment"># Do nothing</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/26/python-02/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1091,7 +1639,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/2019-02-03-python-01/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/22/The-Pragmatic-Programmer-Quick-Reference-Guide/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="EricZhu-42">
@@ -1111,7 +1659,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/01/2019-02-03-python-01/" class="post-title-link" itemprop="url">Python-Requests用法简介</a>
+                <a href="/2019/02/22/The-Pragmatic-Programmer-Quick-Reference-Guide/" class="post-title-link" itemprop="url">The Pragmatic Programmer Quick Reference Guide</a>
               
             
           </h1>
@@ -1136,7 +1684,7 @@
                 
               
 
-              <time title="创建时间：2019-05-01 00:20:25" itemprop="dateCreated datePublished" datetime="2019-05-01T00:20:25+08:00">2019-05-01</time>
+              <time title="创建时间：2019-02-22 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-22T00:00:00+08:00">2019-02-22</time>
             
 
             
@@ -1153,7 +1701,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-03 22:48:19" itemprop="dateModified" datetime="2019-02-03T22:48:19+08:00">2019-02-03</time>
+                <time title="修改时间：2019-05-01 00:42:31" itemprop="dateModified" datetime="2019-05-01T00:42:31+08:00">2019-05-01</time>
               
             
           </span>
@@ -1188,11 +1736,17 @@
 
       
         
-          Python-Requests用法简介
+          <h1 id="The-Pragmatic-Programmer"><a href="#The-Pragmatic-Programmer" class="headerlink" title="The Pragmatic Programmer"></a>The Pragmatic Programmer</h1><p>This article summarizes the tips and checklists found in <a href="http://www.amazon.com/exec/obidos/ASIN/020161622X/codinghorror-20" target="_blank" rel="noopener">The Pragmatic Programmer</a>.</p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><ol>
+<li><strong>Care About Your Craft</strong><br>Why spend your life developing software unless you care about doing it well?</li>
+<li><strong>Think About Your Work</strong><br>Turn off the autopilot and take control. Constantly critique and appraise your work.</li>
+<li><strong>Provide Options, Don’t Make Lame Excuses</strong><br>Instead of excuses, provide options. Don’t say it can’t be done; explain what can be done.</li>
+<li><strong>Don’t Live with Broken Windows</strong><br>Fix bad designs, wrong decisions, and poor code when you see them.</li>
+<li><strong>Be a Catalyst for Change</strong><br>You can’t force change on people. Instead, show them how the future might be and help them participate in creating it.
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/05/01/2019-02-03-python-01/">
+              <a class="btn" href="/2019/02/22/The-Pragmatic-Programmer-Quick-Reference-Guide/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1200,7 +1754,7 @@
           <!--/noindex-->
         
       
-    </div>
+    </li></ol></div>
 
     
 
@@ -1252,7 +1806,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/2019-02-03-digital-circuit-01/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/21/The-Pragmatic-Programmer-chapter-1&2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="EricZhu-42">
@@ -1272,7 +1826,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/01/2019-02-03-digital-circuit-01/" class="post-title-link" itemprop="url">数字电路-概念笔记-01</a>
+                <a href="/2019/02/21/The-Pragmatic-Programmer-chapter-1&2/" class="post-title-link" itemprop="url">The Pragmatic Programmer, Chapter 1&2</a>
               
             
           </h1>
@@ -1297,7 +1851,7 @@
                 
               
 
-              <time title="创建时间：2019-05-01 00:20:25" itemprop="dateCreated datePublished" datetime="2019-05-01T00:20:25+08:00">2019-05-01</time>
+              <time title="创建时间：2019-02-21 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-21T00:00:00+08:00">2019-02-21</time>
             
 
             
@@ -1314,7 +1868,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-06 22:42:23" itemprop="dateModified" datetime="2019-03-06T22:42:23+08:00">2019-03-06</time>
+                <time title="修改时间：2019-05-01 00:42:40" itemprop="dateModified" datetime="2019-05-01T00:42:40+08:00">2019-05-01</time>
               
             
           </span>
@@ -1349,494 +1903,21 @@
 
       
         
-          数字电路-概念笔记-01
+          <h1 id="The-Pragmatic-Programmer"><a href="#The-Pragmatic-Programmer" class="headerlink" title="The Pragmatic Programmer"></a>The Pragmatic Programmer</h1><h2 id="1-A-Pragmatic-Philosophy"><a href="#1-A-Pragmatic-Philosophy" class="headerlink" title="1. A Pragmatic Philosophy"></a>1. A Pragmatic Philosophy</h2><h3 id="The-Cat-Ate-My-Source-Code"><a href="#The-Cat-Ate-My-Source-Code" class="headerlink" title="The Cat Ate My Source Code"></a>The Cat Ate My Source Code</h3><ul>
+<li>Take responsibilities for yourself and your actions, being honest and direct</li>
+<li>Provide options instead of lame excuses</li>
+<li>Be ready for others’ errors</li>
+<li>Admit that you need help when necessary</li>
+</ul>
+<h3 id="Software-Entropy"><a href="#Software-Entropy" class="headerlink" title="Software Entropy"></a>Software Entropy</h3><ul>
+<li><strong>Don’t live with broken windows, fix them as soon as they are discovered</strong></li>
+<li>If time is insufficient, leave a comment at least</li>
+<li>Neglect accelerates the rot faster than any other factor</li>
+</ul>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/05/01/2019-02-03-digital-circuit-01/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/2019-03-26-python-09/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="EricZhu-42">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="EricZhu-42's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/01/2019-03-26-python-09/" class="post-title-link" itemprop="url">Functional Programming of Python</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-01 00:20:25" itemprop="dateCreated datePublished" datetime="2019-05-01T00:20:25+08:00">2019-05-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-26 14:53:48" itemprop="dateModified" datetime="2019-03-26T14:53:48+08:00">2019-03-26</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          Python - 函数式编程
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/01/2019-03-26-python-09/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/2019-03-21-python-08/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="EricZhu-42">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="EricZhu-42's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/01/2019-03-21-python-08/" class="post-title-link" itemprop="url">Notes on "Python Cookbook"</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-01 00:20:25" itemprop="dateCreated datePublished" datetime="2019-05-01T00:20:25+08:00">2019-05-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-02 14:11:42" itemprop="dateModified" datetime="2019-04-02T14:11:42+08:00">2019-04-02</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          Notes on "Python Cookbook"
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/01/2019-03-21-python-08/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/01/2019-03-12-python-07/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="EricZhu-42">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="EricZhu-42's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/01/2019-03-12-python-07/" class="post-title-link" itemprop="url">Tricks for Python</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-01 00:20:25" itemprop="dateCreated datePublished" datetime="2019-05-01T00:20:25+08:00">2019-05-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-26 14:12:27" itemprop="dateModified" datetime="2019-03-26T14:12:27+08:00">2019-03-26</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          Tricks for Python
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/01/2019-03-12-python-07/">
+              <a class="btn" href="/2019/02/21/The-Pragmatic-Programmer-chapter-1&2/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1927,7 +2008,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
