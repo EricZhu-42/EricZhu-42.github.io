@@ -12,8 +12,10 @@ tags: [python]
 ![04](QQ-Zone-Spider\04.png)
 ![04](QQ-Zone-Spider\05.png)
 
+<!-- more -->
 
 ### 环境需求
+
 1. Python 3.72
 2. Python模块：[Selenium](<https://selenium-python.readthedocs.io/#>) 与 [Requests](<http://cn.python-requests.org/zh_CN/latest/>)
 3. Google Chrome 74.0 与 ChromeDriver 74.0
