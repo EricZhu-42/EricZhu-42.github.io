@@ -1,10 +1,9 @@
 ---
 title: Python-Requests用法简介
 date: 2019-02-03
-tags: [python]
+tags: [Python]
 ---
 
-# Requests
 >Requests is an elegant and simple HTTP library for Python, built for human beings.
 
 ## 安装方法

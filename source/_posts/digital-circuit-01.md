@@ -1,9 +1,8 @@
 ---
 title: 数字电路-概念笔记-01
 date: 2019-02-03
-tags: [digital circuit]
+tags: [Digital Circuit]
 ---
-# 数制与码制
 > 关键词：  数制, 码制  
 
 ### 一、几种常用的数制  
