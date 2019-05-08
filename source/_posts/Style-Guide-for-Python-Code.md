@@ -1,7 +1,7 @@
 ---
 title: Notes on "Style Guide for Python Code"
 date: 2019-02-26
-tags: [python]
+tags: [Python]
 ---
 **This article is an abstract of *Style Guide for Python Code* by python-dev.**
 

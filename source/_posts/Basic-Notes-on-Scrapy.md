@@ -1,7 +1,7 @@
 ---
 title: Basic Notes on Scrapy
 date: 2019-03-09
-tags: [python]
+tags: [Python]
 ---
 
 ## About Scrapy
@@ -48,7 +48,7 @@ Here are some details about the methods and attributes defined in our first spid
 
   The `parse()`method usually parses the response, extracting the scraped data as dicts and also finding new URLs to follow and creating new requests from them.
 
-## How to run our spider
+## How to run it
 
 Use the following command to run our first spider.
 
