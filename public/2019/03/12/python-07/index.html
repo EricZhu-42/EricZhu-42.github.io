@@ -445,7 +445,7 @@
 </ul>
 </li>
 <li><p><strong>all(A); any(A)</strong></p>
-<p>Return <code>True</code> if all/any element of the <em>iterable</em> A is true.</p>
+<p>Return <code>True</code> if all/any element of the _iterable_ A is true.</p>
 </li>
 <li><p><strong>format()</strong></p>
 <p>It can be used this way to replace <code>bin()</code></p>
@@ -456,26 +456,26 @@
 </ol>
 <a id="more"></a> 
 <ol start="4">
-<li><p><strong>enumerate(<em>iterable</em>, <em>start=0</em>)</strong></p>
+<li><p><strong>enumerate(_iterable_, _start=0_)</strong></p>
 <p>It can be easily used to get the index of an item in a For-expression to replace <code>zip()</code>. </p>
 <p>Here is an example:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>seasons = [<span class="string">'Spring'</span>, <span class="string">'Summer'</span>, <span class="string">'Fall'</span>, <span class="string">'Winter'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(enumerate(seasons))</span><br><span class="line">[(<span class="number">0</span>, <span class="string">'Spring'</span>), (<span class="number">1</span>, <span class="string">'Summer'</span>), (<span class="number">2</span>, <span class="string">'Fall'</span>), (<span class="number">3</span>, <span class="string">'Winter'</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>list(enumerate(seasons, start=<span class="number">1</span>))</span><br><span class="line">[(<span class="number">1</span>, <span class="string">'Spring'</span>), (<span class="number">2</span>, <span class="string">'Summer'</span>), (<span class="number">3</span>, <span class="string">'Fall'</span>), (<span class="number">4</span>, <span class="string">'Winter'</span>)]</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;<span class="keyword">for</span> index, item <span class="keyword">in</span> list(enumerate(seasons)):</span><br><span class="line">...	<span class="comment">#Do something</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>filter(<em>function</em>, <em>iterable</em>)</strong></p>
-<p>Construct an iterator from those elements of <em>iterable</em> for which <em>function</em> returns true.</p>
-<p>If <em>function</em> is <code>None</code>, the identity function is assumed, that is, all elements of <em>iterable</em> that are false are removed.</p>
+<li><p><strong>filter(_function_, _iterable_)</strong></p>
+<p>Construct an iterator from those elements of _iterable_ for which _function_ returns true.</p>
+<p>If _function_ is <code>None</code>, the identity function is assumed, that is, all elements of _iterable_ that are false are removed.</p>
 <p>It is equivalent to the generator expression <code>(item for item initerable if function(item))</code> if function is not <code>None</code> and <code>(item for item in iterable if item)</code> if function is <code>None</code>.</p>
 </li>
-<li><p><strong>hash(<em>object</em>)</strong></p>
+<li><p><strong>hash(_object_)</strong></p>
 <p>Return the hash value of the object (if it has one). They are used to quickly compare dictionary keys during a dictionary lookup.</p>
 <p>Numeric values that compare equal have the same hash value (even if they are of different types, as is the case for 1 and 1.0).</p>
 </li>
-<li><p><strong>map(<em>function</em>, <em>iterable</em>, <em>…</em>)</strong></p>
-<p>Return an iterator that applies <em>function</em> to every item of <em>iterable</em>, yielding the results.</p>
-<p>This is similar to <em>List Comprehensions</em>, when a single iterable is given.</p>
+<li><p><strong>map(_function_, _iterable_, _…_)</strong></p>
+<p>Return an iterator that applies _function_ to every item of _iterable_, yielding the results.</p>
+<p>This is similar to _List Comprehensions_, when a single iterable is given.</p>
 </li>
-<li><p><strong>max(<em>iterable</em>, <em>[, </em>key<em>, </em>default*])</strong></p>
-<p>The argument <code>key=keyfunc</code> can be especially useful when used to find the <em>biggest</em> element according to a given function.</p>
+<li><p><strong>max(_iterable_, _[, _key_, _default*])</strong></p>
+<p>The argument <code>key=keyfunc</code> can be especially useful when used to find the _biggest_ element according to a given function.</p>
 </li>
 </ol>
 <h2 id="To-be-continued"><a href="#To-be-continued" class="headerlink" title="To be continued"></a>To be continued</h2>
@@ -597,7 +597,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -727,7 +727,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共20.8k字</span>
+  <span class="post-count">博客全站共23.3k字</span>
 </div>
 
         
@@ -854,6 +854,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 
