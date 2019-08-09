@@ -36,4 +36,3 @@ CV & NLP，Image Captioning 问题
 ### 本文的贡献
 
 1. 介绍了在统一框架下的两种Attention机制：**Soft Attention**（通过标准的反向传播方法进行训练）与**Hard Attention**（通过最大化近似变分下界进行训练）。
-2. 
