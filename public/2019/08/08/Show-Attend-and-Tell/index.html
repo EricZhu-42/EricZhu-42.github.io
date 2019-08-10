@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="EricZhu-42&#39;s Blog">
 <meta property="og:description" content="论文信息   类别 内容     论文名称 Show, Attend and Tell: Neural Image Caption Generation with Visual Attention   发表时间 ICML 2015   作者 Kelvin Xu, Jimmy Ba, Ryan Kiros, Kyunghyun Cho, Aaron Courville, Ruslan Salakhu">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-08T11:55:03.330Z">
+<meta property="og:updated_time" content="2019-08-10T13:00:11.112Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Show, Attend and Tell - Neural Image Caption Generation with Visual Attention">
 <meta name="twitter:description" content="论文信息   类别 内容     论文名称 Show, Attend and Tell: Neural Image Caption Generation with Visual Attention   发表时间 ICML 2015   作者 Kelvin Xu, Jimmy Ba, Ryan Kiros, Kyunghyun Cho, Aaron Courville, Ruslan Salakhu">
@@ -384,12 +384,24 @@
                 
               
 
-              <time title="创建时间：2019-08-08 00:00:00 / 修改时间：19:55:03" itemprop="dateCreated datePublished" datetime="2019-08-08T00:00:00+08:00">2019-08-08</time>
+              <time title="创建时间：2019-08-08 00:00:00" itemprop="dateCreated datePublished" datetime="2019-08-08T00:00:00+08:00">2019-08-08</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-10 21:00:11" itemprop="dateModified" datetime="2019-08-10T21:00:11+08:00">2019-08-10</time>
               
             
           </span>
@@ -455,11 +467,23 @@
 <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><h3 id="Attention的特性"><a href="#Attention的特性" class="headerlink" title="Attention的特性"></a>Attention的特性</h3><ol>
 <li>Attention使得模型能够在需要的时候<strong>自动地</strong>关注于图片上的<strong>某个显著对象</strong>。</li>
 <li>本文中的Attention有两种主要类别：<strong>Hard Attention</strong>与<strong>Soft Attention</strong>。</li>
-<li>Attention能够协助可视化<strong>模型究竟“看到了什么”</strong>。</li>
+<li>Attention能够协助可视化模型究竟“<strong>看到了什么</strong>”。</li>
 </ol>
 <h3 id="本文的贡献"><a href="#本文的贡献" class="headerlink" title="本文的贡献"></a>本文的贡献</h3><ol>
 <li>介绍了在统一框架下的两种Attention机制：<strong>Soft Attention</strong>（通过标准的反向传播方法进行训练）与<strong>Hard Attention</strong>（通过最大化近似变分下界进行训练）。</li>
-<li></li>
+<li>揭示了可以通过可视化Attention的关注点来对模型的结果进行解释的事实。</li>
+<li>通过引入Attention机制，在多个数据集上达到了State-of-the-art的结果。</li>
+</ol>
+<h3 id="相关工作"><a href="#相关工作" class="headerlink" title="相关工作"></a>相关工作</h3><ol>
+<li>当前的图像/视频Captioning任务主要采用Encoder-Decoder结构，即在模型顶层使用经过预训练的CNN网络将图片转换为单一的特征向量，再使用RNN生成描述文本。</li>
+<li>在神经网络方法出现之前的常用方法：<ol>
+<li>先对图片进行目标检测，再针对检测的结果生成Caption模板，最后基于目标检测的结果对模板进行填充。</li>
+<li>先从数据库里找出图片相似度最高的Caption，再对找出的Caption进行调整。</li>
+</ol>
+</li>
+</ol>
+<h2 id="模型机理"><a href="#模型机理" class="headerlink" title="模型机理"></a>模型机理</h2><h3 id="模型细节"><a href="#模型细节" class="headerlink" title="模型细节"></a>模型细节</h3><ol>
+<li>Encoder：CNN卷积层，</li>
 </ol>
 
       
@@ -658,7 +682,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文信息"><span class="nav-number">1.</span> <span class="nav-text">论文信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心信息"><span class="nav-number">2.</span> <span class="nav-text">核心信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文章领域及方向"><span class="nav-number">2.1.</span> <span class="nav-text">文章领域及方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文章概要"><span class="nav-number">2.2.</span> <span class="nav-text">文章概要</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">3.</span> <span class="nav-text">引言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Attention的特性"><span class="nav-number">3.1.</span> <span class="nav-text">Attention的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本文的贡献"><span class="nav-number">3.2.</span> <span class="nav-text">本文的贡献</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文信息"><span class="nav-number">1.</span> <span class="nav-text">论文信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心信息"><span class="nav-number">2.</span> <span class="nav-text">核心信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文章领域及方向"><span class="nav-number">2.1.</span> <span class="nav-text">文章领域及方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文章概要"><span class="nav-number">2.2.</span> <span class="nav-text">文章概要</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">3.</span> <span class="nav-text">引言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Attention的特性"><span class="nav-number">3.1.</span> <span class="nav-text">Attention的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本文的贡献"><span class="nav-number">3.2.</span> <span class="nav-text">本文的贡献</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关工作"><span class="nav-number">3.3.</span> <span class="nav-text">相关工作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型机理"><span class="nav-number">4.</span> <span class="nav-text">模型机理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型细节"><span class="nav-number">4.1.</span> <span class="nav-text">模型细节</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -706,7 +730,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共24k字</span>
+  <span class="post-count">博客全站共24.2k字</span>
 </div>
 
         

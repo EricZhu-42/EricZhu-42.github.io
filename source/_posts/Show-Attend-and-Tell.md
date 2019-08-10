@@ -31,8 +31,24 @@ CV & NLP，Image Captioning 问题
 
 1. Attention使得模型能够在需要的时候**自动地**关注于图片上的**某个显著对象**。
 2. 本文中的Attention有两种主要类别：**Hard Attention**与**Soft Attention**。
-3. Attention能够协助可视化**模型究竟“看到了什么”**。
+3. Attention能够协助可视化模型究竟“**看到了什么**”。
 
 ### 本文的贡献
 
 1. 介绍了在统一框架下的两种Attention机制：**Soft Attention**（通过标准的反向传播方法进行训练）与**Hard Attention**（通过最大化近似变分下界进行训练）。
+2. 揭示了可以通过可视化Attention的关注点来对模型的结果进行解释的事实。
+3. 通过引入Attention机制，在多个数据集上达到了State-of-the-art的结果。
+
+### 相关工作
+
+1. 当前的图像/视频Captioning任务主要采用Encoder-Decoder结构，即在模型顶层使用经过预训练的CNN网络将图片转换为单一的特征向量，再使用RNN生成描述文本。
+2. 在神经网络方法出现之前的常用方法：
+   1. 先对图片进行目标检测，再针对检测的结果生成Caption模板，最后基于目标检测的结果对模板进行填充。
+   2. 先从数据库里找出图片相似度最高的Caption，再对找出的Caption进行调整。
+
+## 模型机理
+
+### 模型细节
+
+1. Encoder：CNN卷积层，
+
