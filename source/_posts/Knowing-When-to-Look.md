@@ -22,7 +22,7 @@ CV & NLP，Image Captioning 问题
 
 ### 文章概要
 
-本文提出了Joint Inference与Context Fusion这两种新方法来解决在Dense Captioning任务中出现的问题。这两种方法利用图片的整体环境信息与物体周围的局部信息，生成对感兴趣区域（Region of Interest, ROI）的描述与检测框的偏移值，在综合得分（mean Average Precision, mAP）指标上达到了当时的state-of-the-art水平。
+本文提出了Spatial Attention与Adaptive Attention这两种机制，分别解决了图片空间特征提取的问题与Caption中非视觉单词无需参考图片特征的问题。
 
 <!-- more --> 
 
@@ -47,7 +47,7 @@ CV & NLP，Image Captioning 问题
 总的来说，本文贡献如下：
 
 1. 提出了一种基于**自适应性（Adaptive）Attention**的Encoder-Decoder框架结构。它可以自动地决定**何时应当参考视觉特征**，而**何时应当仅依赖于语言模型**。
-2. 提出了创新的**spatial Attention**机制来提取图片中的空间特征。
+2. 提出了创新的**Spatial Attention**机制来提取图片中的空间特征。
 3. 提出了LSTM的一种新的拓展，即通过在hidden state外新增一个**visual sentinel**来解决单词的生成过程对图像特征的依赖程度不固定的问题。
 
 ## 具体方法
@@ -78,3 +78,64 @@ h_t = LSTM(x_t,h_{t-1},m_{t-1})
 $$
 其中 $x_t$ 为输入向量，$m_{t-1}$ 是在 $t-1$ 时刻的记忆单元。
 
+通常的，$c_t$ 对模型的表现会产生较大的影响。而生成 $c_t$ 的方法在不同的架构中被分为两类：
+
+1. 在原始的Encoder-Decoder架构中，$c_t$ 即**为Encoder的直接输出**。在生成Caption的不同阶段，$c_t$ 总是保持恒定。
+2. 在基于Attention的架构中，**$c_t$ 同时依赖于Encoder与Decoder**。在时刻 $t$, 基于Decoder的隐藏层状态，模型将会关注于图像的不同部分，并以此计算出 $c_t$.
+
+### Spatial Attention 模型
+
+在该模型中，视觉特征向量 $c_t$ 的计算被如下定义：
+$$
+c_t = g(V,h_t)
+$$
+其中，$g$ 是Attention函数，$V = [v_1,\dots,v_k], v_i \in R^d$ 是图像内 $k$ 个区域的特征，$h_t$ 是RNN在时刻 $t$ 的隐藏层状态。
+
+对于给定的空间图像特征 $V \in R^{d*k}$ 和LSTM的隐藏层状态 $h_t \in R^d$，我们把它们送进一个单层的
+
+![](Knowing-When-to-Look\1.png)
+
+### Adaptive Attention 模型
+
+尽管基于Spatial Attention的Decoder在Image Captioning任务中表现出众，它无法决定何时应当依赖于视觉特征，而何时应当依赖于语言模型。因此，我们提出了visual sentinel的概念来进一步拓展上述模型。
+
+**什么是 visual sentinel ?** Decoder的记忆储存了**视觉**和**语言模型**的**长短期**信息。我们的模型从Decoder的记忆中提取出**新的信息**，并在模型决定不参考图像的时候使用该信息来生成单词。这种新的信息就是visual sentinel. 
+
+具体来说，我们对LSTM进行如下改进来生成 visual sentinel向量 $s_t$：
+$$
+g_t = \sigma(W_xx_t + W_hh_{t-1})
+$$
+$$
+s_t = g_t \cdot tanh(m_t)
+$$
+
+其中 $W_x$ 和 $W_h$ 是需要学习的权重向量，$x_t$ 是在时刻 $t$ 的LSTM输出，$g_t$ 是对记忆单元 $m_t$  所英勇的sentinel gate，$\sigma$ 是对数sigmoid激活函数。
+
+下图展示了第 $t$ 个单词 $y_t$ 的生成过程。
+
+![](Knowing-When-to-Look\2.png)
+
+在Adaptive Attention模型中，新的视觉特征向量 $\hat{c_t}$ 的计算方法如下：
+$$
+\hat{c_t} = \beta_ts_t + (1-\beta_t)c_t
+$$
+即$\hat{c_t}$ 是visual sentinel $s_t$ 与原始视觉特征向量 $c_t$ 的组合，其中 $\beta_t$ 是时刻 $t$ 的新sentinel gate，其取值范围为 $[0,1]$.
+
+## 实现细节
+
+### Encoder-CNN
+
+本模型采用ResNet的最后一个卷积层输出作为图像特征，维度为2048 x 7 x 7.
+
+### Decoder-RNN
+
+本模型将word embedding向量 $w_t$ 与全局的图像特征向量 $v^g$ 进行组合来获得输入向量 $x_t = [w_t;v^g]$. 我们用单层的全连接网络来把visual sentinel向量 $s_t$ 与LSTM输出 $h_t$ 转化为d维的新向量。
+
+### 训练细节
+
+1. RNN使用深度为512的单层LSTM
+2. 使用Adam优化器，语言模型的初始学习率为5e-4，CNN的初始学习率为1e-5
+3. momentum与weight-decay被分别设为0.8和0.999
+4. 在20个epochs后开始fine-tune CNN
+5. Batch size为80，训练最大次数为50 epchs，在CIDEr的验证分数连续6轮无提升时early-stoppping.
+6. 在采样caption时采用了beam size为3的beam search.
