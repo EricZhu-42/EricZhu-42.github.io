@@ -22,7 +22,7 @@ CV & NLP，Image Captioning 问题
 
 ### 文章概要
 
-本文提出了Spatial Attention与Adaptive Attention这两种机制，分别解决了图片空间特征提取的问题与Caption中非视觉单词无需参考图片特征的问题。
+本文提出了Spatial Attention与Adaptive Attention这两种机制，分别解决了图片空间特征提取的问题与Caption中非视觉单词无需参考图片特征的问题。这两种机制的引入大幅提升了模型表现，在多个数据集上达到了State-of-the-art的水平。
 
 <!-- more --> 
 
@@ -91,7 +91,9 @@ c_t = g(V,h_t)
 $$
 其中，$g$ 是Attention函数，$V = [v_1,\dots,v_k], v_i \in R^d$ 是图像内 $k$ 个区域的特征，$h_t$ 是RNN在时刻 $t$ 的隐藏层状态。
 
-对于给定的空间图像特征 $V \in R^{d*k}$ 和LSTM的隐藏层状态 $h_t \in R^d$，我们把它们送进一个单层的
+对于给定的空间图像特征 $V \in R^{d*k}$ 和LSTM的隐藏层状态 $h_t \in R^d$，我们把它们送进一个单层的全连接网络中，并用softmax函数获得对应的K个区域上的attention分布。
+
+下图为Soft Attention模型的图示 (a), 与本文提出的Spatial Attention模型的图示 (b).
 
 ![](Knowing-When-to-Look\1.png)
 
@@ -139,3 +141,21 @@ $$
 4. 在20个epochs后开始fine-tune CNN
 5. Batch size为80，训练最大次数为50 epchs，在CIDEr的验证分数连续6轮无提升时early-stoppping.
 6. 在采样caption时采用了beam size为3的beam search.
+
+## 模型评价
+
+### 模型表现
+
+以下为模型在Flicker30k与MS-COCO数据集上的训练表现。
+
+![](Knowing-When-to-Look\3.png)
+
+可以看出，在只使用Spatial Attention的情况下，模型已经取得了不错的成绩；引入Adaptive Attention后，模型的表现有了进一步的提升。
+
+### 评估细节
+
+下图为Adaptive Attention中sentinel gate $1-\beta$ 的可视化结果。
+
+![](Knowing-When-to-Look\4.png)
+
+可以看出，对于视觉词，模型给出的概率较大，即更倾向于关注图像特征 $c_t$，对于非视觉词的概率则比较小。同时，同一个词在不同的上下文中的概率也是不一样的。如”a”，在一开始的概率较高，因为**开始时没有任何的语义信息可以依赖**，并且需要确定句子的单复数。
