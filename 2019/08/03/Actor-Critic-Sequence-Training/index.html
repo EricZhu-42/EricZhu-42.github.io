@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/08/03/Actor-Critic-Sequence-Training/1.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/03/Actor-Critic-Sequence-Training/2.png">
 <meta property="og:image" content="http://yoursite.com/2019/08/03/Actor-Critic-Sequence-Training/3.png">
-<meta property="og:updated_time" content="2019-08-03T17:33:12.495Z">
+<meta property="og:updated_time" content="2019-08-03T17:36:08.630Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Actor-Critic Sequence Training for Image Captioning">
 <meta name="twitter:description" content="论文信息   类别 内容     论文名称 Actor-Critic Sequence Training for Image Captioning   发表时间 CVPR 2017   作者 Li Zhang, Flood Sung, Feng Liu, Tao Xiang, Shaogang Gong, Yongxin Yang, Timothy M. Hospedales   关键词 Imag">
@@ -406,7 +406,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-04 01:33:12" itemprop="dateModified" datetime="2019-08-04T01:33:12+08:00">2019-08-04</time>
+                <time title="修改时间：2019-08-04 01:36:08" itemprop="dateModified" datetime="2019-08-04T01:36:08+08:00">2019-08-04</time>
               
             
           </span>
@@ -506,7 +506,7 @@
 <h4 id="Advantage-函数"><a href="#Advantage-函数" class="headerlink" title="Advantage 函数"></a>Advantage 函数</h4><p>我们使用时序差分（TD）学习来获得Advantage. 我们定义Q值如下：<br>$$<br>Q^\pi(s_t,a_{t+1})=(1-\lambda)\sum^\infty_{n=1}G^n_t<br>$$<br>其中 $G^n_t$ 为n步的期望回报：<br>$$<br>G^n_t = r_{t+1} + \gamma r_{t+2} + \dots + \gamma^{n-1}r_{t+n} + \gamma^nV^\pi(s_t)<br>$$<br>因此，我们得到Adavantage函数的表示形式：<br>$$<br>A^\pi(s_t,a_{t+1})=Q^\pi(s_t,a_{t+1})-V^\pi(s_t)=(1-\lambda)\sum^\infty_{n=1}G^n_t-V^\pi(s_t)<br>$$</p>
 <h4 id="Value-函数"><a href="#Value-函数" class="headerlink" title="Value 函数"></a>Value 函数</h4><p>我们使用一个非线性函数来表示Value，最简单的方法就是解决一个非线性回归问题：<br>$$<br>argmin\ \phi \ ||Q^\pi(s_t,a_{t+1})-V^t_\phi(s_t)||^2<br>$$</p>
 <p>其中 $Q^\pi(s_t,a_{t+1})$ 的定义已经在上文说明</p>
-<h4 id="lambda-的选择"><a href="#lambda-的选择" class="headerlink" title="$\lambda$ 的选择"></a>$\lambda$ 的选择</h4><p>$\lambda$ 在整个算法中起到重要作用。如果 $\lambda=0$, 那么Advantage与Value的估计<strong>只考虑单步TD</strong>；如果 $\lambda=1$, 那么估计则转变成<strong>蒙特卡洛方法</strong>。因为Image Captioning任务中的序列长度较短，我们需要对整个序列进行采样来获得reward，所以我们令 $\lambda=1$, 这使得Advantage与Value的估计不会产生偏差，而有限的序列长度也限制了估计结果方差的大小。此时我们有：<br>$$<br>Q^\pi(s_t,a_{t+1}) = \sum^{T-t-1}_{l=0} \gamma^lr_{t+l+1}<br>$$</p>
+<h4 id="λ-的选择"><a href="#λ-的选择" class="headerlink" title="λ 的选择"></a>λ 的选择</h4><p>$\lambda$ 在整个算法中起到重要作用。如果 $\lambda=0$, 那么Advantage与Value的估计<strong>只考虑单步TD</strong>；如果 $\lambda=1$, 那么估计则转变成<strong>蒙特卡洛方法</strong>。因为Image Captioning任务中的序列长度较短，我们需要对整个序列进行采样来获得reward，所以我们令 $\lambda=1$, 这使得Advantage与Value的估计不会产生偏差，而有限的序列长度也限制了估计结果方差的大小。此时我们有：<br>$$<br>Q^\pi(s_t,a_{t+1}) = \sum^{T-t-1}_{l=0} \gamma^lr_{t+l+1}<br>$$</p>
 <h4 id="Reward"><a href="#Reward" class="headerlink" title="Reward"></a>Reward</h4><p>在本任务中，我们仅能在Caption序列完全生成时才能得到评价指标（如：CIDEr分数）。因此，我们定义reward如下：<br>$$<br>r_t =<br>\begin{cases}<br>0  &amp; \text{if $t&lt;T$} \\<br>score &amp; \text{if $t=T$}<br>\end{cases}<br>$$<br>因此有：<br>$$<br>Q^\pi(s_t,a_{t+1})=\gamma^{T-t-1}r_T<br>$$</p>
 <h2 id="模型训练与评估"><a href="#模型训练与评估" class="headerlink" title="模型训练与评估"></a>模型训练与评估</h2><h3 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h3><ol>
 <li>CNN部分采用Inception-v3，RNN部分采用深度为512的LSTM层（与embedding维度相同）</li>
@@ -573,6 +573,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/10/Knowing-When-to-Look/" rel="prev" title="Knowing When to Look - Adaptive Attention via A Visual Sentinel for Image Captioning">
+                Knowing When to Look - Adaptive Attention via A Visual Sentinel for Image Captioning <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -643,7 +647,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -725,7 +729,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文信息"><span class="nav-number">1.</span> <span class="nav-text">论文信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心信息"><span class="nav-number">2.</span> <span class="nav-text">核心信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文章领域及方向"><span class="nav-number">2.1.</span> <span class="nav-text">文章领域及方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文章概要"><span class="nav-number">2.2.</span> <span class="nav-text">文章概要</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">3.</span> <span class="nav-text">引言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本文重点"><span class="nav-number">3.1.</span> <span class="nav-text">本文重点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#当前Encoder-Decoder模型存在的问题"><span class="nav-number">3.2.</span> <span class="nav-text">当前Encoder-Decoder模型存在的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#针对上述两个问题提出的解决方案"><span class="nav-number">3.3.</span> <span class="nav-text">针对上述两个问题提出的解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型设计思路"><span class="nav-number">3.4.</span> <span class="nav-text">模型设计思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关工作"><span class="nav-number">3.5.</span> <span class="nav-text">相关工作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型构造"><span class="nav-number">4.</span> <span class="nav-text">模型构造</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题公式化"><span class="nav-number">4.1.</span> <span class="nav-text">问题公式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型组成部分"><span class="nav-number">4.2.</span> <span class="nav-text">模型组成部分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#策略网络（actor）"><span class="nav-number">4.2.1.</span> <span class="nav-text">策略网络（actor）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#价值网络（critic）"><span class="nav-number">4.2.2.</span> <span class="nav-text">价值网络（critic）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Advantage-函数"><span class="nav-number">4.2.3.</span> <span class="nav-text">Advantage 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Value-函数"><span class="nav-number">4.2.4.</span> <span class="nav-text">Value 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#lambda-的选择"><span class="nav-number">4.2.5.</span> <span class="nav-text">$\lambda$ 的选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reward"><span class="nav-number">4.2.6.</span> <span class="nav-text">Reward</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型训练与评估"><span class="nav-number">5.</span> <span class="nav-text">模型训练与评估</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#训练过程"><span class="nav-number">5.1.</span> <span class="nav-text">训练过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练结果"><span class="nav-number">5.2.</span> <span class="nav-text">训练结果</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文信息"><span class="nav-number">1.</span> <span class="nav-text">论文信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心信息"><span class="nav-number">2.</span> <span class="nav-text">核心信息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文章领域及方向"><span class="nav-number">2.1.</span> <span class="nav-text">文章领域及方向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文章概要"><span class="nav-number">2.2.</span> <span class="nav-text">文章概要</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">3.</span> <span class="nav-text">引言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本文重点"><span class="nav-number">3.1.</span> <span class="nav-text">本文重点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#当前Encoder-Decoder模型存在的问题"><span class="nav-number">3.2.</span> <span class="nav-text">当前Encoder-Decoder模型存在的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#针对上述两个问题提出的解决方案"><span class="nav-number">3.3.</span> <span class="nav-text">针对上述两个问题提出的解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型设计思路"><span class="nav-number">3.4.</span> <span class="nav-text">模型设计思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关工作"><span class="nav-number">3.5.</span> <span class="nav-text">相关工作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型构造"><span class="nav-number">4.</span> <span class="nav-text">模型构造</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题公式化"><span class="nav-number">4.1.</span> <span class="nav-text">问题公式化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型组成部分"><span class="nav-number">4.2.</span> <span class="nav-text">模型组成部分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#策略网络（actor）"><span class="nav-number">4.2.1.</span> <span class="nav-text">策略网络（actor）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#价值网络（critic）"><span class="nav-number">4.2.2.</span> <span class="nav-text">价值网络（critic）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Advantage-函数"><span class="nav-number">4.2.3.</span> <span class="nav-text">Advantage 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Value-函数"><span class="nav-number">4.2.4.</span> <span class="nav-text">Value 函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#λ-的选择"><span class="nav-number">4.2.5.</span> <span class="nav-text">λ 的选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reward"><span class="nav-number">4.2.6.</span> <span class="nav-text">Reward</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型训练与评估"><span class="nav-number">5.</span> <span class="nav-text">模型训练与评估</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#训练过程"><span class="nav-number">5.1.</span> <span class="nav-text">训练过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#训练结果"><span class="nav-number">5.2.</span> <span class="nav-text">训练结果</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -773,7 +777,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共23.3k字</span>
+  <span class="post-count">博客全站共25.3k字</span>
 </div>
 
         
