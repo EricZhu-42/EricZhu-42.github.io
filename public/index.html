@@ -337,6 +337,222 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/Theory_of_debug/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="EricZhu-42">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EricZhu-42's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/11/08/Theory_of_debug/" class="post-title-link" itemprop="url">Theory of Debug</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-08 00:00:00 / 修改时间：15:43:55" itemprop="dateCreated datePublished" datetime="2019-11-08T00:00:00+08:00">2019-11-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="调试：理论与实践"><a href="#调试：理论与实践" class="headerlink" title="调试：理论与实践"></a>调试：理论与实践</h1><blockquote>
+<p>本文的主要来自<a href="http://ics.nju.edu.cn/~jyy/" target="_blank" rel="noopener">JYY老师</a>的<a href="http://ics.nju.edu.cn/~jyywiki/wiki/ICS2019" target="_blank" rel="noopener">ICS2019课程</a>讲义</p>
+</blockquote>
+<h2 id="在讲理论之前的箴言"><a href="#在讲理论之前的箴言" class="headerlink" title="在讲理论之前的箴言"></a>在讲理论之前的箴言</h2><ul>
+<li>机器永远是对的</li>
+<li>未测试代码永远是错的</li>
+</ul>
+<h2 id="为什么Debug那么困难？"><a href="#为什么Debug那么困难？" class="headerlink" title="为什么Debug那么困难？"></a>为什么Debug那么困难？</h2><p>因为 bug 的触发经历了漫长的过程：<br>Fault (bug) → Error (程序状态错) → Failure (可观测的结果错)</p>
+<ul>
+<li>我们只能观测到 failure</li>
+<li>我们可以检查状态的正确性 (但非常费时)</li>
+<li>无法预知 bug 在哪里 (每一行 “看起来” 都挺对的)</li>
+</ul>
+<p><img src="/2019/11/08/Theory_of_debug/fault-error-failure.png" alt="img"></p>
+<h2 id="调试理论"><a href="#调试理论" class="headerlink" title="调试理论"></a>调试理论</h2><p>首先，我们必须知道，程序/系统是一个<strong>状态机</strong>。</p>
+<h3 id="理论中的调试"><a href="#理论中的调试" class="headerlink" title="理论中的调试"></a>理论中的调试</h3><blockquote>
+<p>如果我们能<strong>判定</strong>（由需求确定）任意程序状态的正确性，那么给定一个 failure，我们可以通过<strong>二分查找</strong>定位到第一个 error 的状态，此时的代码就是 fault (bug)。 </p>
+</blockquote>
+<p>因此，调试循环中的（如高斯消元，动态规划问题）中的bug往往会比较困难。</p>
+<h3 id="实际中的调试"><a href="#实际中的调试" class="headerlink" title="实际中的调试"></a>实际中的调试</h3><p> 这个理论有一个非常明显的<strong>缺陷</strong>：对 OJ 题之类的小程序还行，对于一个软件、大程序，根本没法用，因此有推论 ：</p>
+<blockquote>
+<p>通过观察程序执行的轨迹 (trace)，缩小错误状态 (error) 可能产生的位置，从而定位到 bugs.</p>
+<ul>
+<li>print → 自定义 log 的 trace</li>
+<li>gdb → 指令/语句级 trace</li>
+</ul>
+</blockquote>
+<p>实际上，我们难以确定每一个程序状态是否正确。因此，我们常常在调试时，每间隔一段语句块输出当前的程序状态（如print），判断当前的程序状态是否正确。</p>
+<h3 id="print-vs-gdb"><a href="#print-vs-gdb" class="headerlink" title="print vs gdb"></a>print vs gdb</h3><h4 id="print-logs"><a href="#print-logs" class="headerlink" title="print (logs)"></a>print (logs)</h4><ul>
+<li>Pros: 灵活可控、能快速定位问题大概位置、适用于大型软件</li>
+<li>Cons: 无法精确定位、大量的 logs 管理起来比较麻烦</li>
+</ul>
+<h4 id="gdb"><a href="#gdb" class="headerlink" title="gdb"></a>gdb</h4><ul>
+<li>Pros: 精确、指令级定位、任意查看程序内部状态</li>
+<li>Cons: 耗时</li>
+</ul>
+<h4 id="实际使用"><a href="#实际使用" class="headerlink" title="实际使用"></a>实际使用</h4><ul>
+<li>debug 业务逻辑时一般使用 log</li>
+<li>debug 具体 root cause 的时候一般用 gdb</li>
+</ul>
+<h2 id="调试-不是一般意义上-“程序”-的-bug"><a href="#调试-不是一般意义上-“程序”-的-bug" class="headerlink" title="调试 (不是一般意义上 “程序” 的) bug"></a>调试 (不是一般意义上 “程序” 的) bug</h2><p>问题诊断其实也是调试，应该利用调试理论去解决问题。</p>
+<p>UNIX 世界里你做任何事情都是在编程</p>
+<ul>
+<li>因此配置错、make 错等，都是程序或输入/配置有 bug</li>
+<li>(输入/配置可以看成是程序的一部分)</li>
+</ul>
+<p>刚才的例子</p>
+<ul>
+<li>没有 “原因报告” (或原因报告不准) → 抓瞎</li>
+<li>我们需要更详细的程序执行过程 (log) → 既然我们有需求，那别人肯定也会有这个需求 → 肯定已经有人搞定这个了</li>
+</ul>
+<h3 id="使用调试理论"><a href="#使用调试理论" class="headerlink" title="使用调试理论"></a>使用调试理论</h3><p>正确的方法：理解程序的执行过程，弄清楚到底为何导致了bug</p>
+<ul>
+<li><p><code>ssh</code>：使用 <code>-v</code> 选项检查日志</p>
+</li>
+<li><p><code>gcc</code>：使用 <code>-v</code> 选项打印各种过程</p>
+</li>
+<li><p><code>make</code>：使用 <code>-n</code> 选项查看完整命令</p>
+</li>
+</ul>
+<h2 id="调试程序代码"><a href="#调试程序代码" class="headerlink" title="调试程序代码"></a>调试程序代码</h2><p>在调试过程中，我们希望Fault能尽快触发Error，Error能尽快触发Failure.</p>
+<ul>
+<li>通过测试（CPUtest等）让Fault触发Error</li>
+<li>通过Differential Test、<strong>Assert</strong>让Error触发Failure</li>
+</ul>
+<h4 id="启发：输出什么调试信息？"><a href="#启发：输出什么调试信息？" class="headerlink" title="启发：输出什么调试信息？"></a>启发：输出什么调试信息？</h4><p>定位出错点、向前追踪都既需要底层详细的调试信息 (用于排查具体问题)，也需要高层抽象的调试信息 (用于快速定位)</p>
+<p>所以你需要<strong>不同类型的</strong> logs！</p>
+<ul>
+<li>能够快速帮你映射到程序执行的总体走势 (function call logs)</li>
+<li>指令执行的日志 (框架代码已经提供了)</li>
+<li>更细致的指令检查工具 (PA1 的内容，知道为啥要做 PA1 了吧？)</li>
+<li>其他有用的信息 (例如 I/O 指令的内容、内存访问的日志等，按需打开)</li>
+</ul>
+<p>核心思想：输出足够的信息，在各个层面上理解程序的执行</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/10/Knowing-When-to-Look/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -399,7 +615,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-23 21:33:04" itemprop="dateModified" datetime="2019-08-23T21:33:04+08:00">2019-08-23</time>
+                <time title="修改时间：2019-08-11 22:13:37" itemprop="dateModified" datetime="2019-08-11T22:13:37+08:00">2019-08-11</time>
               
             
           </span>
@@ -587,7 +803,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-04 01:36:08" itemprop="dateModified" datetime="2019-08-04T01:36:08+08:00">2019-08-04</time>
+                <time title="修改时间：2019-08-06 01:14:49" itemprop="dateModified" datetime="2019-08-06T01:14:49+08:00">2019-08-06</time>
               
             
           </span>
@@ -775,7 +991,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-03 03:01:38" itemprop="dateModified" datetime="2019-08-03T03:01:38+08:00">2019-08-03</time>
+                <time title="修改时间：2019-08-06 01:14:49" itemprop="dateModified" datetime="2019-08-06T01:14:49+08:00">2019-08-06</time>
               
             
           </span>
@@ -946,12 +1162,24 @@
                 
               
 
-              <time title="创建时间：2019-05-01 11:51:55 / 修改时间：15:32:02" itemprop="dateCreated datePublished" datetime="2019-05-01T11:51:55+08:00">2019-05-01</time>
+              <time title="创建时间：2019-05-01 11:51:55" itemprop="dateCreated datePublished" datetime="2019-05-01T11:51:55+08:00">2019-05-01</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-06 01:14:49" itemprop="dateModified" datetime="2019-08-06T01:14:49+08:00">2019-08-06</time>
               
             
           </span>
@@ -1113,7 +1341,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-03 14:29:30" itemprop="dateModified" datetime="2019-05-03T14:29:30+08:00">2019-05-03</time>
+                <time title="修改时间：2019-08-06 01:14:49" itemprop="dateModified" datetime="2019-08-06T01:14:49+08:00">2019-08-06</time>
               
             
           </span>
@@ -1277,7 +1505,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-01 00:40:44" itemprop="dateModified" datetime="2019-05-01T00:40:44+08:00">2019-05-01</time>
+                <time title="修改时间：2019-08-06 01:14:49" itemprop="dateModified" datetime="2019-08-06T01:14:49+08:00">2019-08-06</time>
               
             
           </span>
@@ -1444,7 +1672,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-01 00:40:57" itemprop="dateModified" datetime="2019-05-01T00:40:57+08:00">2019-05-01</time>
+                <time title="修改时间：2019-08-06 01:14:49" itemprop="dateModified" datetime="2019-08-06T01:14:49+08:00">2019-08-06</time>
               
             
           </span>
@@ -1623,7 +1851,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-08 14:31:23" itemprop="dateModified" datetime="2019-05-08T14:31:23+08:00">2019-05-08</time>
+                <time title="修改时间：2019-08-06 01:14:49" itemprop="dateModified" datetime="2019-08-06T01:14:49+08:00">2019-08-06</time>
               
             
           </span>
@@ -1786,7 +2014,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-01 00:41:37" itemprop="dateModified" datetime="2019-05-01T00:41:37+08:00">2019-05-01</time>
+                <time title="修改时间：2019-08-06 01:14:49" itemprop="dateModified" datetime="2019-08-06T01:14:49+08:00">2019-08-06</time>
               
             
           </span>
@@ -1833,174 +2061,6 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/2019/03/05/python-05/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/28/python-04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="EricZhu-42">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="EricZhu-42's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/28/python-04/" class="post-title-link" itemprop="url">Basic Notes on NumPy</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-28 00:00:00" itemprop="dateCreated datePublished" datetime="2019-02-28T00:00:00+08:00">2019-02-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-01 00:41:50" itemprop="dateModified" datetime="2019-05-01T00:41:50+08:00">2019-05-01</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="About-NumPy"><a href="#About-NumPy" class="headerlink" title="About NumPy"></a>About NumPy</h2><p>​    NumPy is the fundamental package for scientific computing with Python. It contains among other things:</p>
-<ul>
-<li>a powerful N-dimensional array object</li>
-<li>sophisticated (broadcasting) functions</li>
-<li>tools for integrating C/C++ and Fortran code</li>
-<li>useful linear algebra, Fourier transform, and random number capabilities</li>
-</ul>
-<h2 id="The-Basics"><a href="#The-Basics" class="headerlink" title="The Basics"></a>The Basics</h2><p>​    NumPy’s array class is called <code>ndarray</code>. It is also known by the alias <code>array</code>. In NumPy dimensions are called _axes_.</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/28/python-04/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2093,7 +2153,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2122,7 +2182,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                      
+                    
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -2206,7 +2268,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共25.3k字</span>
+  <span class="post-count">博客全站共26.2k字</span>
 </div>
 
         
@@ -2333,9 +2395,9 @@
   
     
       
-        
-      
     
+      
+        
       
     
       

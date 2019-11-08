@@ -88,6 +88,11 @@ UNIX 世界里你做任何事情都是在编程
 
 ## 调试程序代码
 
+在调试过程中，我们希望Fault能尽快触发Error，Error能尽快触发Failure.
+
+- 通过测试（CPUtest等）让Fault触发Error
+- 通过Differential Test、**Assert**让Error触发Failure
+
 #### 启发：输出什么调试信息？
 
 定位出错点、向前追踪都既需要底层详细的调试信息 (用于排查具体问题)，也需要高层抽象的调试信息 (用于快速定位)

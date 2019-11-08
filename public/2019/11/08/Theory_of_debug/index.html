@@ -96,18 +96,20 @@
 
 
 
-  <meta name="description" content="About ScrapyScrapy is an application framework for crawling web sites and extracting structured data which can be used for a wide range of useful applications, like data mining, information processing">
-<meta name="keywords" content="Python">
+  <meta name="description" content="调试：理论与实践 本文的主要来自JYY老师的ICS2019课程讲义  在讲理论之前的箴言 机器永远是对的 未测试代码永远是错的  为什么Debug那么困难？因为 bug 的触发经历了漫长的过程：Fault (bug) → Error (程序状态错) → Failure (可观测的结果错)  我们只能观测到 failure 我们可以检查状态的正确性 (但非常费时) 无法预知 bug 在哪里 (每一行">
+<meta name="keywords" content="Lecture Notes">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Basic Notes on Scrapy">
-<meta property="og:url" content="http://yoursite.com/2019/03/09/Basic-Notes-on-Scrapy/index.html">
+<meta property="og:title" content="Theory of Debug">
+<meta property="og:url" content="http://yoursite.com/2019/11/08/Theory_of_debug/index.html">
 <meta property="og:site_name" content="EricZhu-42&#39;s Blog">
-<meta property="og:description" content="About ScrapyScrapy is an application framework for crawling web sites and extracting structured data which can be used for a wide range of useful applications, like data mining, information processing">
+<meta property="og:description" content="调试：理论与实践 本文的主要来自JYY老师的ICS2019课程讲义  在讲理论之前的箴言 机器永远是对的 未测试代码永远是错的  为什么Debug那么困难？因为 bug 的触发经历了漫长的过程：Fault (bug) → Error (程序状态错) → Failure (可观测的结果错)  我们只能观测到 failure 我们可以检查状态的正确性 (但非常费时) 无法预知 bug 在哪里 (每一行">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-05T17:14:49.330Z">
+<meta property="og:image" content="http://yoursite.com/2019/11/08/Theory_of_debug/fault-error-failure.png">
+<meta property="og:updated_time" content="2019-11-08T07:43:55.224Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Basic Notes on Scrapy">
-<meta name="twitter:description" content="About ScrapyScrapy is an application framework for crawling web sites and extracting structured data which can be used for a wide range of useful applications, like data mining, information processing">
+<meta name="twitter:title" content="Theory of Debug">
+<meta name="twitter:description" content="调试：理论与实践 本文的主要来自JYY老师的ICS2019课程讲义  在讲理论之前的箴言 机器永远是对的 未测试代码永远是错的  为什么Debug那么困难？因为 bug 的触发经历了漫长的过程：Fault (bug) → Error (程序状态错) → Failure (可观测的结果错)  我们只能观测到 failure 我们可以检查状态的正确性 (但非常费时) 无法预知 bug 在哪里 (每一行">
+<meta name="twitter:image" content="http://yoursite.com/2019/11/08/Theory_of_debug/fault-error-failure.png">
 
 
 
@@ -115,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/03/09/Basic-Notes-on-Scrapy/">
+  <link rel="canonical" href="http://yoursite.com/2019/11/08/Theory_of_debug/">
 
 
 
@@ -125,7 +127,7 @@
   };
 </script>
 
-  <title>Basic Notes on Scrapy | EricZhu-42's Blog</title>
+  <title>Theory of Debug | EricZhu-42's Blog</title>
   
 
 
@@ -341,7 +343,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/09/Basic-Notes-on-Scrapy/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/08/Theory_of_debug/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="EricZhu-42">
@@ -358,7 +360,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Basic Notes on Scrapy
+          <h1 class="post-title" itemprop="name headline">Theory of Debug
 
               
             
@@ -384,24 +386,12 @@
                 
               
 
-              <time title="创建时间：2019-03-09 00:00:00" itemprop="dateCreated datePublished" datetime="2019-03-09T00:00:00+08:00">2019-03-09</time>
+              <time title="创建时间：2019-11-08 00:00:00 / 修改时间：15:43:55" itemprop="dateCreated datePublished" datetime="2019-11-08T00:00:00+08:00">2019-11-08</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-06 01:14:49" itemprop="dateModified" datetime="2019-08-06T01:14:49+08:00">2019-08-06</time>
               
             
           </span>
@@ -435,24 +425,81 @@
       
 
       
-        <h2 id="About-Scrapy"><a href="#About-Scrapy" class="headerlink" title="About Scrapy"></a>About Scrapy</h2><p>Scrapy is an application framework for crawling web sites and extracting structured data which can be used for a wide range of useful applications, like data mining, information processing or historical archival.</p>
-<h2 id="Our-first-Spider"><a href="#Our-first-Spider" class="headerlink" title="Our first Spider"></a>Our first Spider</h2><p>Spiders are classes that you define and that Scrapy uses to scrape information from a website (or a group of websites). They must subclass <code>scrapy.Spider</code> and define the initial requests to make, optionally how to follow links in the pages, and how to parse the downloaded page content to extract data.</p>
-<p>Here is the code for our first Spider.</p>
-<a id="more"></a> 
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuotesSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">"quotes"</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">        urls = [</span><br><span class="line">            <span class="string">'http://quotes.toscrape.com/page/1/'</span>,</span><br><span class="line">            <span class="string">'http://quotes.toscrape.com/page/2/'</span>,</span><br><span class="line">        ]</span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(url=url, callback=self.parse)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        page = response.url.split(<span class="string">"/"</span>)[<span class="number">-2</span>]</span><br><span class="line">        filename = <span class="string">'quotes-%s.html'</span> % page</span><br><span class="line">        <span class="keyword">with</span> open(filename, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(response.body)</span><br><span class="line">        self.log(<span class="string">'Saved file %s'</span> % filename)</span><br></pre></td></tr></table></figure>
-<p>Here are some details about the methods and attributes defined in our first spider.</p>
+        <h1 id="调试：理论与实践"><a href="#调试：理论与实践" class="headerlink" title="调试：理论与实践"></a>调试：理论与实践</h1><blockquote>
+<p>本文的主要来自<a href="http://ics.nju.edu.cn/~jyy/" target="_blank" rel="noopener">JYY老师</a>的<a href="http://ics.nju.edu.cn/~jyywiki/wiki/ICS2019" target="_blank" rel="noopener">ICS2019课程</a>讲义</p>
+</blockquote>
+<h2 id="在讲理论之前的箴言"><a href="#在讲理论之前的箴言" class="headerlink" title="在讲理论之前的箴言"></a>在讲理论之前的箴言</h2><ul>
+<li>机器永远是对的</li>
+<li>未测试代码永远是错的</li>
+</ul>
+<h2 id="为什么Debug那么困难？"><a href="#为什么Debug那么困难？" class="headerlink" title="为什么Debug那么困难？"></a>为什么Debug那么困难？</h2><p>因为 bug 的触发经历了漫长的过程：<br>Fault (bug) → Error (程序状态错) → Failure (可观测的结果错)</p>
 <ul>
-<li><p><code>name</code>: identifies the Spider. It must be unique within a project, that is, you can’t set the same name for different Spiders.</p>
+<li>我们只能观测到 failure</li>
+<li>我们可以检查状态的正确性 (但非常费时)</li>
+<li>无法预知 bug 在哪里 (每一行 “看起来” 都挺对的)</li>
+</ul>
+<p><img src="/2019/11/08/Theory_of_debug/fault-error-failure.png" alt="img"></p>
+<h2 id="调试理论"><a href="#调试理论" class="headerlink" title="调试理论"></a>调试理论</h2><p>首先，我们必须知道，程序/系统是一个<strong>状态机</strong>。</p>
+<h3 id="理论中的调试"><a href="#理论中的调试" class="headerlink" title="理论中的调试"></a>理论中的调试</h3><blockquote>
+<p>如果我们能<strong>判定</strong>（由需求确定）任意程序状态的正确性，那么给定一个 failure，我们可以通过<strong>二分查找</strong>定位到第一个 error 的状态，此时的代码就是 fault (bug)。 </p>
+</blockquote>
+<p>因此，调试循环中的（如高斯消元，动态规划问题）中的bug往往会比较困难。</p>
+<h3 id="实际中的调试"><a href="#实际中的调试" class="headerlink" title="实际中的调试"></a>实际中的调试</h3><p> 这个理论有一个非常明显的<strong>缺陷</strong>：对 OJ 题之类的小程序还行，对于一个软件、大程序，根本没法用，因此有推论 ：</p>
+<blockquote>
+<p>通过观察程序执行的轨迹 (trace)，缩小错误状态 (error) 可能产生的位置，从而定位到 bugs.</p>
+<ul>
+<li>print → 自定义 log 的 trace</li>
+<li>gdb → 指令/语句级 trace</li>
+</ul>
+</blockquote>
+<p>实际上，我们难以确定每一个程序状态是否正确。因此，我们常常在调试时，每间隔一段语句块输出当前的程序状态（如print），判断当前的程序状态是否正确。</p>
+<h3 id="print-vs-gdb"><a href="#print-vs-gdb" class="headerlink" title="print vs gdb"></a>print vs gdb</h3><h4 id="print-logs"><a href="#print-logs" class="headerlink" title="print (logs)"></a>print (logs)</h4><ul>
+<li>Pros: 灵活可控、能快速定位问题大概位置、适用于大型软件</li>
+<li>Cons: 无法精确定位、大量的 logs 管理起来比较麻烦</li>
+</ul>
+<h4 id="gdb"><a href="#gdb" class="headerlink" title="gdb"></a>gdb</h4><ul>
+<li>Pros: 精确、指令级定位、任意查看程序内部状态</li>
+<li>Cons: 耗时</li>
+</ul>
+<h4 id="实际使用"><a href="#实际使用" class="headerlink" title="实际使用"></a>实际使用</h4><ul>
+<li>debug 业务逻辑时一般使用 log</li>
+<li>debug 具体 root cause 的时候一般用 gdb</li>
+</ul>
+<h2 id="调试-不是一般意义上-“程序”-的-bug"><a href="#调试-不是一般意义上-“程序”-的-bug" class="headerlink" title="调试 (不是一般意义上 “程序” 的) bug"></a>调试 (不是一般意义上 “程序” 的) bug</h2><p>问题诊断其实也是调试，应该利用调试理论去解决问题。</p>
+<p>UNIX 世界里你做任何事情都是在编程</p>
+<ul>
+<li>因此配置错、make 错等，都是程序或输入/配置有 bug</li>
+<li>(输入/配置可以看成是程序的一部分)</li>
+</ul>
+<p>刚才的例子</p>
+<ul>
+<li>没有 “原因报告” (或原因报告不准) → 抓瞎</li>
+<li>我们需要更详细的程序执行过程 (log) → 既然我们有需求，那别人肯定也会有这个需求 → 肯定已经有人搞定这个了</li>
+</ul>
+<h3 id="使用调试理论"><a href="#使用调试理论" class="headerlink" title="使用调试理论"></a>使用调试理论</h3><p>正确的方法：理解程序的执行过程，弄清楚到底为何导致了bug</p>
+<ul>
+<li><p><code>ssh</code>：使用 <code>-v</code> 选项检查日志</p>
 </li>
-<li><p><code>start_requests()</code>: must return an iterable of Requests (you can return a list of requests or write a generator function) which the Spider will begin to crawl from. Subsequent requests will be generated successively from these initial requests.</p>
+<li><p><code>gcc</code>：使用 <code>-v</code> 选项打印各种过程</p>
 </li>
-<li><p><code>parse()</code>: a method that will be called to handle the response downloaded for each of the requests made. The response parameter is an instance of <code>TextResponse</code> that holds the page content and has further helpful methods to handle it.</p>
-<p>The <code>parse()</code>method usually parses the response, extracting the scraped data as dicts and also finding new URLs to follow and creating new requests from them.</p>
+<li><p><code>make</code>：使用 <code>-n</code> 选项查看完整命令</p>
 </li>
 </ul>
-<h2 id="How-to-run-it"><a href="#How-to-run-it" class="headerlink" title="How to run it"></a>How to run it</h2><p>Use the following command to run our first spider.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrapy crawl quotes</span><br></pre></td></tr></table></figure>
-<h2 id="To-be-continued"><a href="#To-be-continued" class="headerlink" title="To be continued"></a>To be continued</h2>
+<h2 id="调试程序代码"><a href="#调试程序代码" class="headerlink" title="调试程序代码"></a>调试程序代码</h2><p>在调试过程中，我们希望Fault能尽快触发Error，Error能尽快触发Failure.</p>
+<ul>
+<li>通过测试（CPUtest等）让Fault触发Error</li>
+<li>通过Differential Test、<strong>Assert</strong>让Error触发Failure</li>
+</ul>
+<h4 id="启发：输出什么调试信息？"><a href="#启发：输出什么调试信息？" class="headerlink" title="启发：输出什么调试信息？"></a>启发：输出什么调试信息？</h4><p>定位出错点、向前追踪都既需要底层详细的调试信息 (用于排查具体问题)，也需要高层抽象的调试信息 (用于快速定位)</p>
+<p>所以你需要<strong>不同类型的</strong> logs！</p>
+<ul>
+<li>能够快速帮你映射到程序执行的总体走势 (function call logs)</li>
+<li>指令执行的日志 (框架代码已经提供了)</li>
+<li>更细致的指令检查工具 (PA1 的内容，知道为啥要做 PA1 了吧？)</li>
+<li>其他有用的信息 (例如 I/O 指令的内容、内存访问的日志等，按需打开)</li>
+</ul>
+<p>核心思想：输出足够的信息，在各个层面上理解程序的执行</p>
+
       
     </div>
 
@@ -475,7 +522,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
+            <a href="/tags/Lecture-Notes/" rel="tag"><i class="fa fa-tag"></i> Lecture Notes</a>
           
         </div>
       
@@ -488,8 +535,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/05/python-05/" rel="next" title="Basic Notes on pandas">
-                <i class="fa fa-chevron-left"></i> Basic Notes on pandas
+              <a href="/2019/08/10/Knowing-When-to-Look/" rel="next" title="Knowing When to Look - Adaptive Attention via A Visual Sentinel for Image Captioning">
+                <i class="fa fa-chevron-left"></i> Knowing When to Look - Adaptive Attention via A Visual Sentinel for Image Captioning
               </a>
             
           </div>
@@ -497,10 +544,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/12/python-07/" rel="prev" title="Tricks for Python">
-                Tricks for Python <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -655,7 +698,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#About-Scrapy"><span class="nav-number">1.</span> <span class="nav-text">About Scrapy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Our-first-Spider"><span class="nav-number">2.</span> <span class="nav-text">Our first Spider</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-run-it"><span class="nav-number">3.</span> <span class="nav-text">How to run it</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#To-be-continued"><span class="nav-number">4.</span> <span class="nav-text">To be continued</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#调试：理论与实践"><span class="nav-number">1.</span> <span class="nav-text">调试：理论与实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#在讲理论之前的箴言"><span class="nav-number">1.1.</span> <span class="nav-text">在讲理论之前的箴言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么Debug那么困难？"><span class="nav-number">1.2.</span> <span class="nav-text">为什么Debug那么困难？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试理论"><span class="nav-number">1.3.</span> <span class="nav-text">调试理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#理论中的调试"><span class="nav-number">1.3.1.</span> <span class="nav-text">理论中的调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实际中的调试"><span class="nav-number">1.3.2.</span> <span class="nav-text">实际中的调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#print-vs-gdb"><span class="nav-number">1.3.3.</span> <span class="nav-text">print vs gdb</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#print-logs"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">print (logs)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gdb"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">gdb</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实际使用"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">实际使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试-不是一般意义上-“程序”-的-bug"><span class="nav-number">1.4.</span> <span class="nav-text">调试 (不是一般意义上 “程序” 的) bug</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用调试理论"><span class="nav-number">1.4.1.</span> <span class="nav-text">使用调试理论</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调试程序代码"><span class="nav-number">1.5.</span> <span class="nav-text">调试程序代码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#启发：输出什么调试信息？"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">启发：输出什么调试信息？</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
