@@ -19,8 +19,12 @@ tags: [Lecture Notes]
 Fault (bug) → Error (程序状态错) → Failure (可观测的结果错)
 
 - 我们只能观测到 failure
+
 - 我们可以检查状态的正确性 (但非常费时)
+
 - 无法预知 bug 在哪里 (每一行 “看起来” 都挺对的)
+
+<!-- more -->
 
 ![img](/Theory_of_debug/fault-error-failure.png)
 
